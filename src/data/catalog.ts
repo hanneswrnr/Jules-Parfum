@@ -118,11 +118,25 @@ export const categoryInfo: Record<PerfumeCategory, CategoryInfo> = {
   },
 };
 
-export function getFlaconImage(category: PerfumeCategory, gender: Gender): string {
-  if (category === "luxury") return "/images/catalog/flacon-luxury-50ml.png";
+const luxuryFlacons = [
+  "/images/catalog/flacon-luxury-50ml.png",
+  "/images/catalog/flacon-luxury-gold.png",
+  "/images/catalog/flacon-luxury-burgundy.png",
+  "/images/catalog/flacon-luxury-teal.png",
+  "/images/catalog/flacon-luxury-grey.png",
+];
+
+export function getFlaconImage(category: PerfumeCategory, gender: Gender, number?: string): string {
+  if (category === "luxury") {
+    const index = number
+      ? parseInt(number, 10) % luxuryFlacons.length
+      : 0;
+    return luxuryFlacons[index];
+  }
   if (gender === "damen") return "/images/catalog/flacon-light-70ml.png";
   if (gender === "herren") return "/images/catalog/flacon-dark-70ml.png";
-  return "/images/catalog/flacon-light-30ml.png";
+  if (gender === "unisex") return "/images/catalog/flacon-light-30ml.png";
+  return "/images/catalog/flacon-dark-30ml.png";
 }
 
 export function getFragranceGradient(notes: string): string {

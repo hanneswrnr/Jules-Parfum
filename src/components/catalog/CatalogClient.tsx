@@ -37,7 +37,7 @@ function formatPrice(price: number): string {
 
 function PerfumeCard({ perfume }: { perfume: Perfume }): React.ReactElement {
   const gradient = getFragranceGradient(perfume.fragranceNotes);
-  const flaconImage = getFlaconImage(perfume.category, perfume.gender);
+  const flaconImage = getFlaconImage(perfume.category, perfume.gender, perfume.number);
   const isMythologik = perfume.category === "mythologik";
   const isLuxury = perfume.category === "luxury";
 
