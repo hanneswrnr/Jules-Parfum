@@ -1,13 +1,42 @@
+import { HeroCanvas } from "@/components/hero/HeroCanvas";
+import { Header } from "@/components/layout/Header";
+import { Revolution } from "@/components/sections/Revolution";
+import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { AboutJules } from "@/components/sections/AboutJules";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { ContactForm } from "@/components/sections/ContactForm";
+import { Footer } from "@/components/layout/Footer";
+
 export default function Home(): React.ReactElement {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background">
-      <h1 className="font-serif text-6xl font-light tracking-tight text-foreground">
-        Jules Parfum
-      </h1>
-      <p className="mt-4 font-sans text-lg text-foreground/60">
-        Finde deinen Signatur-Duft
-      </p>
-      <div className="mt-8 h-px w-24 bg-accent" />
-    </main>
+    <>
+      <Header />
+
+      <main>
+        {/* 1. Hero: Canvas Scroll Animation */}
+        <HeroCanvas />
+
+        {/* 2. Die Revolution: Warum unsere Preise fair sind */}
+        <Revolution />
+
+        {/* 3. Feature Grid: Qualitäts-Facts */}
+        <div id="qualitaet">
+          <FeatureGrid />
+        </div>
+
+        {/* 4. Über Jules Parfum */}
+        <div id="ueber">
+          <AboutJules />
+        </div>
+
+        {/* 5. So einfach gehts: 3-Step Prozess */}
+        <HowItWorks />
+
+        {/* 6. Kontakt / Lead-Formular */}
+        <ContactForm />
+      </main>
+
+      <Footer />
+    </>
   );
 }
