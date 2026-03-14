@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/cookie/CookieSettingsButton";
 
 export function Footer(): React.ReactElement {
   const currentYear = new Date().getFullYear();
@@ -14,8 +15,8 @@ export function Footer(): React.ReactElement {
           {/* Top Section: Brand + Navigation */}
           <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-8">
             {/* Brand Column */}
-            <div className="md:col-span-5">
-              <div className="flex items-center gap-3">
+            <div className="text-center md:col-span-5 md:text-left">
+              <div className="flex items-center justify-center gap-3 md:justify-start">
                 <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl">
                   <Image
                     src="/logos/jules-parfum-logo-original.png"
@@ -29,14 +30,14 @@ export function Footer(): React.ReactElement {
                   Jules Parfum
                 </p>
               </div>
-              <p className="mt-5 max-w-xs font-sans text-sm leading-relaxed text-background/40">
+              <p className="mx-auto mt-5 max-w-xs font-sans text-sm leading-relaxed text-background/40 md:mx-0">
                 Luxuri&ouml;se D&uuml;fte zum fairen Preis. Extrait de Parfum mit 30% Duftessenz &mdash; direkt zu dir nach Hause.
               </p>
 
               {/* Social Icons */}
-              <div className="mt-6 flex gap-3">
+              <div className="mt-6 flex justify-center gap-3 md:justify-start">
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/juliemchlk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.06] text-background/40 transition-all duration-500 hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(201,169,110,0.3)]"
@@ -47,7 +48,7 @@ export function Footer(): React.ReactElement {
                   </svg>
                 </a>
                 <a
-                  href="https://wa.me/"
+                  href="https://wa.me/491735231044"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.06] text-background/40 transition-all duration-500 hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(201,169,110,0.3)]"
@@ -61,13 +62,13 @@ export function Footer(): React.ReactElement {
             </div>
 
             {/* Navigation Columns */}
-            <div className="grid grid-cols-2 gap-8 md:col-span-7 md:gap-12 md:pl-8">
+            <div className="grid grid-cols-2 gap-8 text-center md:col-span-7 md:gap-12 md:pl-8 md:text-left">
               {/* Navigation */}
               <div>
                 <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent/70">
                   Navigation
                 </p>
-                <nav className="mt-5 flex flex-col gap-3.5">
+                <nav className="mt-5 flex flex-col items-center gap-3.5 md:items-start">
                   {[
                     { label: "Produkte", href: "/produkte" },
                     { label: "\u00dcber mich", href: "/ueber" },
@@ -76,7 +77,7 @@ export function Footer(): React.ReactElement {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="group flex w-fit items-center gap-2 font-sans text-sm text-background/50 transition-all duration-300 hover:text-background"
+                      className="group flex w-fit items-center gap-2 py-1 font-sans text-sm text-background/50 transition-all duration-300 hover:text-background"
                     >
                       <span className="h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-3" />
                       {link.label}
@@ -90,7 +91,7 @@ export function Footer(): React.ReactElement {
                 <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent/70">
                   Rechtliches
                 </p>
-                <nav className="mt-5 flex flex-col gap-3.5">
+                <nav className="mt-5 flex flex-col items-center gap-3.5 md:items-start">
                   {[
                     { label: "Impressum", href: "/impressum" },
                     { label: "Datenschutz", href: "/datenschutz" },
@@ -98,12 +99,13 @@ export function Footer(): React.ReactElement {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="group flex w-fit items-center gap-2 font-sans text-sm text-background/50 transition-all duration-300 hover:text-background"
+                      className="group flex w-fit items-center gap-2 py-1 font-sans text-sm text-background/50 transition-all duration-300 hover:text-background"
                     >
                       <span className="h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-3" />
                       {link.label}
                     </Link>
                   ))}
+                  <CookieSettingsButton />
                 </nav>
               </div>
             </div>

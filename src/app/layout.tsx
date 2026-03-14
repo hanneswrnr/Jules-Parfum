@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cormorantGaramond, dmSans } from "@/lib/fonts";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { CookieConsentWrapper } from "@/components/cookie/CookieConsentWrapper";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,13 +27,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: "Jules Parfum",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -43,22 +37,59 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Jules Parfum",
-  url: "https://julesparfum.de",
-  logo: "https://julesparfum.de/logos/jules-parfum-logo-original.png",
-  description:
-    "Luxuriöse Düfte zum fairen Preis. Extrait de Parfum mit 30% Duftessenz — direkt zu dir nach Hause. Unabhängige Chogan Vertriebspartnerin.",
-  address: {
-    "@type": "PostalAddress",
-    postalCode: "04442",
-    addressLocality: "Zwenkau",
-    addressCountry: "DE",
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Jules Parfum",
+    url: "https://julesparfum.de",
+    logo: "https://julesparfum.de/logos/jules-parfum-logo-original.png",
+    description:
+      "Luxuriöse Düfte zum fairen Preis. Extrait de Parfum mit 30% Duftessenz — direkt zu dir nach Hause. Unabhängige Chogan Vertriebspartnerin.",
+    address: {
+      "@type": "PostalAddress",
+      postalCode: "04442",
+      addressLocality: "Zwenkau",
+      addressRegion: "Sachsen",
+      addressCountry: "DE",
+    },
+    sameAs: ["https://www.instagram.com/juliemchlk"],
   },
-  sameAs: ["https://www.instagram.com/"],
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Jules Parfum",
+    description:
+      "Unabhängige Chogan Vertriebspartnerin — Extrait de Parfum mit 30% Duftessenz, 0% Wasser, 100% vegan. Persönliche Duftberatung in Zwenkau und online.",
+    url: "https://julesparfum.de",
+    image: "https://julesparfum.de/logos/jules-parfum-logo-original.png",
+    address: {
+      "@type": "PostalAddress",
+      postalCode: "04442",
+      addressLocality: "Zwenkau",
+      addressRegion: "Sachsen",
+      addressCountry: "DE",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 51.2167,
+      longitude: 12.3333,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "DE",
+    },
+    priceRange: "€€",
+    makesOffer: {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Product",
+        name: "Extrait de Parfum",
+        category: "Parfum",
+      },
+    },
+  },
+];
 
 export default function RootLayout({
   children,
@@ -80,8 +111,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ScrollProgress />
-        <SmoothScroll>{children}</SmoothScroll>
+        <CookieConsentWrapper>
+          <ScrollProgress />
+          <SmoothScroll>{children}</SmoothScroll>
+        </CookieConsentWrapper>
       </body>
     </html>
   );

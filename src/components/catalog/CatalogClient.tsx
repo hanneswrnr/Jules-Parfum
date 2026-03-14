@@ -237,7 +237,7 @@ function PerfumeCard({ perfume }: { perfume: Perfume }): React.ReactElement {
         <Link
           href="/kontakt"
           aria-label={`${perfume.name} anfragen`}
-          className="mt-3 flex items-center justify-center gap-2 rounded-full bg-foreground py-2.5 font-sans text-[12px] font-medium tracking-wide text-background transition-all duration-700 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_4px_24px_rgba(201,169,110,0.25)] sm:mt-4 sm:py-3 sm:text-[13px]"
+          className="mt-3 flex items-center justify-center gap-2 rounded-full bg-foreground py-3 font-sans text-[12px] font-medium tracking-wide text-background transition-all duration-700 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_4px_24px_rgba(201,169,110,0.25)] sm:mt-4 sm:py-3.5 sm:text-[13px]"
         >
           Anfragen
           <svg
@@ -814,17 +814,17 @@ export function CatalogClient(): React.ReactElement {
               sizes="(max-width: 768px) 100vw, 1400px"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-            <div className="relative z-10 max-w-lg">
+            <div className="relative z-10 max-w-lg text-center sm:text-left">
               <h2 className="font-serif text-3xl font-light tracking-tight text-white md:text-4xl">
                 Welcher Duft passt zu dir?
               </h2>
-              <p className="mt-4 font-sans text-base leading-relaxed text-white/60">
+              <p className="mx-auto mt-4 max-w-md font-sans text-base leading-relaxed text-white/60 sm:mx-0 sm:max-w-none">
                 Schreib mir deine Vorlieben — welche Noten magst du? Frisch,
                 holzig, blumig? Ich stelle dir eine persönliche Auswahl zusammen.
               </p>
               <Link
                 href="/kontakt"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-sans text-sm font-medium text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_4px_30px_rgba(201,169,110,0.4)]"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 font-sans text-sm font-medium text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_4px_30px_rgba(201,169,110,0.4)]"
               >
                 Persönliche Beratung anfragen
                 <svg

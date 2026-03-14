@@ -40,9 +40,9 @@ export default function ImpressumPage(): React.ReactElement {
               </h2>
               <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-accent/30 to-transparent" />
               <address className="mt-5 font-sans text-base not-italic leading-loose text-foreground/70">
-                <strong className="font-medium text-foreground">[VOLLSTÄNDIGER NAME]</strong>
+                <strong className="font-medium text-foreground">Julie Michalek</strong>
                 <br />
-                [STRASSE HAUSNUMMER]
+                Feldstr. 18
                 <br />
                 04442 Zwenkau
                 <br />
@@ -61,16 +61,23 @@ export default function ImpressumPage(): React.ReactElement {
                   <dt className="w-24 shrink-0 text-foreground/40">E-Mail</dt>
                   <dd>
                     <a
-                      href="mailto:[E-MAIL-ADRESSE]"
+                      href="mailto:julie.michalek22@gmail.com"
                       className="transition-colors duration-200 hover:text-accent"
                     >
-                      [E-MAIL-ADRESSE]
+                      julie.michalek22@gmail.com
                     </a>
                   </dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-24 shrink-0 text-foreground/40">Telefon</dt>
-                  <dd>[TELEFONNUMMER]</dd>
+                  <dd>
+                    <a
+                      href="tel:+491735231044"
+                      className="transition-colors duration-200 hover:text-accent"
+                    >
+                      0173 5231044
+                    </a>
+                  </dd>
                 </div>
               </dl>
             </section>
@@ -82,25 +89,82 @@ export default function ImpressumPage(): React.ReactElement {
               </h2>
               <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-accent/30 to-transparent" />
               <p className="mt-5 font-sans text-base leading-relaxed text-foreground/70">
-                [UST-IDNR ODER HINWEIS AUF KLEINUNTERNEHMERREGELUNG — Beispiel:
-                &ldquo;Gemäß §19 UStG wird keine Umsatzsteuer berechnet
-                (Kleinunternehmerregelung).&rdquo;]
+                Die umsatzsteuerliche Angabe wird derzeit aktualisiert.
+                {/* TODO: USt-IdNr. oder Kleinunternehmerregelung eintragen, z.B.: "Gemäß §19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung)." */}
               </p>
             </section>
 
             {/* Chogan-Disclaimer */}
             <section>
               <h2 className="font-serif text-2xl font-light text-foreground">
-                Hinweis zur Marke Chogan
+                Hinweis zu Marken &amp; Vertrieb
               </h2>
               <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-accent/30 to-transparent" />
-              <div className="mt-5 rounded-2xl border border-accent/20 bg-accent/5 p-6">
-                <p className="font-sans text-base leading-relaxed text-foreground/70">
-                  Jules Parfum ist eine unabhängige Chogan Vertriebspartnerin.
-                  Die Marken &ldquo;Chogan&rdquo; und &ldquo;Olfazeta&rdquo; sind
-                  eingetragene Marken der Chogan Group S.p.A. Diese Website wird
-                  eigenverantwortlich betrieben und steht in keiner direkten
-                  organisatorischen Verbindung zur Chogan Group S.p.A.
+              <div className="mt-5 space-y-4">
+                <div className="rounded-2xl border border-accent/20 bg-accent/5 p-6">
+                  <p className="font-sans text-base leading-relaxed text-foreground/70">
+                    <strong className="font-medium text-foreground">Jules Parfum</strong> ist
+                    eine unabh&auml;ngige Vertriebspartnerin der Chogan Group S.p.A. und
+                    kein offizieller Unternehmensauftritt. Diese Website wird
+                    eigenverantwortlich betrieben und steht in keiner direkten
+                    organisatorischen Verbindung zur Chogan Group S.p.A.
+                  </p>
+                </div>
+                <div className="font-sans text-base leading-relaxed text-foreground/70 space-y-3">
+                  <p>
+                    Die Marken &ldquo;<strong className="font-medium text-foreground">Chogan</strong>&rdquo;
+                    und &ldquo;<strong className="font-medium text-foreground">Olfazeta</strong>&rdquo;
+                    sind eingetragene Marken der Chogan Group S.p.A. (Via Nottola 20,
+                    53035 Monteriggioni SI, Italien). Die auf dieser Website angebotenen
+                    Parfums stammen aus der Produktlinie &ldquo;Olfazeta&rdquo; der Chogan Group.
+                  </p>
+                  <p>
+                    Alle Produktbezeichnungen, Produktbeschreibungen und
+                    Duftcharakterisierungen basieren auf Angaben der Chogan Group S.p.A.
+                    und werden in Eigenverantwortung der Betreiberin auf dieser Website
+                    wiedergegeben. Die Nennung von Marken Dritter (z.&thinsp;B. bei
+                    Duftvergleichen oder Inspirationshinweisen) dient ausschlie&szlig;lich der
+                    Orientierung und stellt keine Verbindung zu den jeweiligen
+                    Markeninhabern dar.
+                  </p>
+                  <p>
+                    Die Duftessenzen werden in Partnerschaft mit Fragworld (Frankreich)
+                    hergestellt. Es handelt sich um eigenst&auml;ndige Kompositionen und nicht
+                    um Kopien oder F&auml;lschungen gesch&uuml;tzter Produkte.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Bildnachweise */}
+            <section>
+              <h2 className="font-serif text-2xl font-light text-foreground">
+                Bildnachweise &amp; Bildrechte
+              </h2>
+              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-accent/30 to-transparent" />
+              <div className="mt-5 space-y-4 font-sans text-base leading-relaxed text-foreground/70">
+                <p>
+                  Auf dieser Website werden Bilder aus folgenden Quellen verwendet:
+                </p>
+                <ul className="ml-4 list-disc space-y-2">
+                  <li>
+                    <strong className="font-medium text-foreground">Produktabbildungen &amp; Flacon-Fotos:</strong>{" "}
+                    Die Abbildungen der Olfazeta-Flacons und Produktfotos werden mit
+                    Genehmigung der Chogan Group S.p.A. im Rahmen der
+                    Vertriebspartnerschaft verwendet. Alle Rechte an den
+                    Produktabbildungen liegen bei der Chogan Group S.p.A.
+                  </li>
+                  <li>
+                    <strong className="font-medium text-foreground">Lifestyle- &amp; Eigenaufnahmen:</strong>{" "}
+                    Weitere auf dieser Website verwendete Fotografien (z.&thinsp;B.
+                    Lifestyle-Bilder, Detailaufnahmen) sind Eigenaufnahmen der Betreiberin
+                    und unterliegen dem Urheberrecht der Seitenbetreiberin.
+                  </li>
+                </ul>
+                <p>
+                  Die Verwendung, Vervielf&auml;ltigung oder Weiterverbreitung der auf
+                  dieser Website gezeigten Bilder ohne vorherige schriftliche
+                  Genehmigung der jeweiligen Rechteinhaber ist nicht gestattet.
                 </p>
               </div>
             </section>
@@ -149,6 +213,14 @@ export default function ImpressumPage(): React.ReactElement {
                     der Verwertung außerhalb der Grenzen des Urheberrechtes
                     bedürfen der schriftlichen Zustimmung der jeweiligen
                     Autorin.
+                  </p>
+                  <p className="mt-3">
+                    Produktabbildungen, Markenzeichen und Produktinformationen
+                    der Marken &ldquo;Chogan&rdquo; und &ldquo;Olfazeta&rdquo;
+                    sind Eigentum der Chogan Group S.p.A. und werden im Rahmen
+                    der autorisierten Vertriebspartnerschaft verwendet. Alle
+                    weiteren auf dieser Website genannten Marken und
+                    Produktnamen sind Eigentum der jeweiligen Inhaber.
                   </p>
                 </div>
               </div>

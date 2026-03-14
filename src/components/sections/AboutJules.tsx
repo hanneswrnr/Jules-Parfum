@@ -81,7 +81,7 @@ export function AboutJules(): React.ReactElement {
         </ScrollReveal>
 
         {/* Text Side */}
-        <div className="order-1 md:order-2">
+        <div className="order-1 text-center md:order-2 md:text-left">
           <ScrollReveal>
             <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
               Die Frau hinter dem Duft
@@ -97,7 +97,7 @@ export function AboutJules(): React.ReactElement {
           </AnimatedText>
 
           <ScrollReveal delay={0.3}>
-            <p className="mt-6 font-sans text-base leading-relaxed text-foreground/55 md:text-lg">
+            <p className="mx-auto mt-6 max-w-md font-sans text-base leading-relaxed text-foreground/55 md:mx-0 md:max-w-none md:text-lg">
               Als unabh&auml;ngige Chogan Vertriebspartnerin habe ich es mir zur
               Aufgabe gemacht, Menschen den Zugang zu hochwertigen D&uuml;ften
               zu erm&ouml;glichen &mdash; ohne den Luxus-Aufpreis der gro&szlig;en Marken.
@@ -106,7 +106,7 @@ export function AboutJules(): React.ReactElement {
 
           {/* Pullquote */}
           <ScrollReveal delay={0.35}>
-            <blockquote className="relative my-8 border-l-2 border-accent/30 pl-6">
+            <blockquote className="relative my-8 border-l-2 border-accent/30 pl-6 text-left">
               <p className="font-serif text-xl italic leading-relaxed text-foreground/80 md:text-2xl">
                 &bdquo;Jeder Duft erz&auml;hlt eine Geschichte. Lass mich dir helfen, deine zu finden.&ldquo;
               </p>
@@ -114,7 +114,7 @@ export function AboutJules(): React.ReactElement {
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
-            <p className="font-sans text-base leading-relaxed text-foreground/55 md:text-lg">
+            <p className="mx-auto max-w-md font-sans text-base leading-relaxed text-foreground/55 md:mx-0 md:max-w-none md:text-lg">
               Pers&ouml;nliche Beratung, ehrliche Empfehlungen und D&uuml;fte, die begeistern &mdash;
               das ist mein Versprechen an dich.
             </p>

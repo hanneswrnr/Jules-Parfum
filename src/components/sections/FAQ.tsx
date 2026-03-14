@@ -67,13 +67,13 @@ function AccordionItem({
           onClick={onToggle}
           className="flex w-full items-center justify-between px-7 py-6 text-left"
         >
-          <span className={`pr-8 font-serif text-lg font-medium transition-colors duration-300 md:text-xl ${
+          <span className={`pr-4 font-serif text-lg font-medium transition-colors duration-300 md:text-xl ${
             isOpen ? "text-foreground" : "text-foreground/70"
           }`}>
             {item.question}
           </span>
           <span
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-500 ${
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-500 ${
               isOpen
                 ? "bg-accent text-white shadow-[0_0_20px_rgba(201,169,110,0.25)]"
                 : "bg-foreground/[0.04] text-foreground/30"

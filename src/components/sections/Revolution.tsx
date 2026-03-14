@@ -12,9 +12,8 @@ const stats = [
     label: "Duftessenz",
     sublabel: "statt 15\u201320% bei Gro\u00dfmarken",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />
       </svg>
     ),
   },
@@ -24,8 +23,9 @@ const stats = [
     label: "Wasserzusatz",
     sublabel: "f\u00fcr maximale Intensit\u00e4t",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="m3 3 8.735 8.735m0 0a.374.374 0 1 1 .53.53m-.53-.53.53.53m0 0L21 21M14.652 9.348a3.75 3.75 0 0 1 0 5.304m2.121-7.425a6.75 6.75 0 0 1 0 9.546m2.121-11.667c3.808 3.807 3.808 9.98 0 13.788" />
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m2 2 20 20" />
       </svg>
     ),
   },
@@ -97,23 +97,23 @@ function StatCard({
         </span>
 
         {/* Icon */}
-        <div className="relative mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/8 text-accent transition-all duration-500 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(201,169,110,0.25)]">
+        <div className="relative mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/8 text-accent transition-all duration-500 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(201,169,110,0.25)] md:mx-0">
           {icon}
         </div>
 
         {/* Number */}
         <span
           ref={numberRef}
-          className="relative block font-serif text-5xl font-light text-foreground md:text-6xl"
+          className="relative block text-center font-serif text-5xl font-light text-foreground md:text-left md:text-6xl"
         >
           0{suffix}
         </span>
 
         {/* Labels */}
-        <p className="relative mt-3 font-sans text-lg font-medium text-foreground">
+        <p className="relative mt-3 text-center font-sans text-lg font-medium text-foreground md:text-left">
           {label}
         </p>
-        <p className="relative mt-1 font-sans text-sm text-foreground/45">
+        <p className="relative mt-1 text-center font-sans text-sm text-foreground/45 md:text-left">
           {sublabel}
         </p>
       </div>

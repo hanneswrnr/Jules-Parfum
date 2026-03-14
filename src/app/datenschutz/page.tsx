@@ -67,9 +67,9 @@ export default function DatenschutzPage(): React.ReactElement {
                 sonstiger datenschutzrechtlicher Bestimmungen ist:
               </p>
               <address className="not-italic rounded-2xl border border-accent/15 bg-accent/5 p-5">
-                <strong className="font-medium text-foreground">[VOLLSTÄNDIGER NAME]</strong>
+                <strong className="font-medium text-foreground">Julie Michalek</strong>
                 <br />
-                [STRASSE HAUSNUMMER]
+                Feldstr. 18
                 <br />
                 04442 Zwenkau
                 <br />
@@ -78,13 +78,19 @@ export default function DatenschutzPage(): React.ReactElement {
                 <br />
                 E-Mail:{" "}
                 <a
-                  href="mailto:[E-MAIL-ADRESSE]"
+                  href="mailto:julie.michalek22@gmail.com"
                   className="transition-colors duration-200 hover:text-accent"
                 >
-                  [E-MAIL-ADRESSE]
+                  julie.michalek22@gmail.com
                 </a>
                 <br />
-                Telefon: [TELEFONNUMMER]
+                Telefon:{" "}
+                <a
+                  href="tel:+491735231044"
+                  className="transition-colors duration-200 hover:text-accent"
+                >
+                  0173 5231044
+                </a>
               </address>
             </Section>
 
@@ -176,8 +182,48 @@ export default function DatenschutzPage(): React.ReactElement {
               </p>
             </Section>
 
-            {/* 5. Google Maps */}
-            <Section title="5. Google Maps">
+            {/* 5. Cookies & Einwilligung */}
+            <Section title="5. Cookies &amp; Einwilligungsverwaltung">
+              <p>
+                Diese Website verwendet ein Cookie-Consent-Banner, &uuml;ber das Sie
+                beim ersten Besuch informiert werden und Ihre Pr&auml;ferenzen festlegen
+                k&ouml;nnen. Ihre Auswahl wird im Local Storage Ihres Browsers
+                gespeichert, damit sie bei weiteren Besuchen erhalten bleibt.
+              </p>
+              <SubHeading>Kategorien</SubHeading>
+              <ul className="ml-4 list-disc space-y-1">
+                <li>
+                  <strong className="font-medium text-foreground">Essentielle Cookies:</strong>{" "}
+                  Diese sind f&uuml;r die grundlegende Funktion der Website erforderlich
+                  und k&ouml;nnen nicht deaktiviert werden. Es werden keine
+                  personenbezogenen Daten an Dritte &uuml;bermittelt.
+                </li>
+                <li>
+                  <strong className="font-medium text-foreground">Externe Medien:</strong>{" "}
+                  Inhalte von Drittanbietern (z.&thinsp;B. Google Maps) werden erst nach
+                  Ihrer ausdr&uuml;cklichen Einwilligung geladen. Ohne Ihre Zustimmung
+                  findet keine Verbindung zu externen Servern statt.
+                </li>
+              </ul>
+              <SubHeading>Ihre Wahlm&ouml;glichkeiten</SubHeading>
+              <p>
+                Sie k&ouml;nnen Ihre Cookie-Einstellungen jederzeit &uuml;ber den Link
+                &ldquo;Cookie-Einstellungen&rdquo; im Footer der Website oder beim
+                erneuten Besuch &auml;ndern. Bereits erteilte Einwilligungen k&ouml;nnen
+                Sie jederzeit widerrufen.
+              </p>
+              <SubHeading>Rechtsgrundlage</SubHeading>
+              <p>
+                Die Speicherung Ihrer Einwilligungsentscheidung erfolgt auf Grundlage
+                von Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung zur
+                Nachweisbarkeit der Einwilligung). Das Laden externer Medien erfolgt
+                auf Grundlage Ihrer Einwilligung gem&auml;&szlig; Art. 6 Abs. 1 lit. a
+                DSGVO.
+              </p>
+            </Section>
+
+            {/* 6. Google Maps */}
+            <Section title="6. Google Maps">
               <p>
                 Diese Website kann Google Maps zur Darstellung von Karten
                 einbinden. Anbieter ist die Google LLC, 1600 Amphitheatre
@@ -213,8 +259,8 @@ export default function DatenschutzPage(): React.ReactElement {
               </p>
             </Section>
 
-            {/* 6. Webfonts */}
-            <Section title="6. Webfonts">
+            {/* 7. Webfonts */}
+            <Section title="7. Webfonts">
               <p>
                 Diese Website verwendet keine extern geladenen Schriftarten.
                 Alle Schriften werden lokal über{" "}
@@ -227,8 +273,8 @@ export default function DatenschutzPage(): React.ReactElement {
               </p>
             </Section>
 
-            {/* 7. Server-Log-Dateien */}
-            <Section title="7. Server-Log-Dateien">
+            {/* 8. Server-Log-Dateien */}
+            <Section title="8. Server-Log-Dateien">
               <p>
                 Der Provider dieser Website erhebt und speichert automatisch
                 Informationen in sogenannten Server-Log-Dateien, die Ihr Browser
@@ -250,8 +296,8 @@ export default function DatenschutzPage(): React.ReactElement {
               </p>
             </Section>
 
-            {/* 8. Betroffenenrechte */}
-            <Section title="8. Ihre Rechte als betroffene Person">
+            {/* 9. Betroffenenrechte */}
+            <Section title="9. Ihre Rechte als betroffene Person">
               <p>
                 Sie haben gegenüber mir folgende Rechte hinsichtlich der Sie
                 betreffenden personenbezogenen Daten:
@@ -309,8 +355,8 @@ export default function DatenschutzPage(): React.ReactElement {
               </p>
             </Section>
 
-            {/* 9. Beschwerderecht */}
-            <Section title="9. Beschwerderecht bei der Aufsichtsbehörde">
+            {/* 10. Beschwerderecht */}
+            <Section title="10. Beschwerderecht bei der Aufsichtsbehörde">
               <p>
                 Unbeschadet eines anderweitigen verwaltungsrechtlichen oder
                 gerichtlichen Rechtsbehelfs steht Ihnen das Recht auf Beschwerde
@@ -344,8 +390,8 @@ export default function DatenschutzPage(): React.ReactElement {
               </div>
             </Section>
 
-            {/* 10. Speicherdauer */}
-            <Section title="10. Speicherdauer">
+            {/* 11. Speicherdauer */}
+            <Section title="11. Speicherdauer">
               <p>
                 Soweit innerhalb dieser Datenschutzerklärung keine speziellere
                 Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen
@@ -360,8 +406,8 @@ export default function DatenschutzPage(): React.ReactElement {
               </p>
             </Section>
 
-            {/* 11. SSL/TLS */}
-            <Section title="11. SSL/TLS-Verschlüsselung">
+            {/* 12. SSL/TLS */}
+            <Section title="12. SSL/TLS-Verschlüsselung">
               <p>
                 Diese Website nutzt aus Sicherheitsgründen und zum Schutz der
                 Übertragung vertraulicher Inhalte eine SSL- bzw.

@@ -60,7 +60,7 @@ function TestimonialCard({
 }): React.ReactElement {
   return (
     <ScrollReveal delay={index * 0.15} distance={30}>
-      <div className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/50 p-8 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] md:p-10">
+      <div className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/50 p-6 text-center backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] sm:p-8 md:p-10 md:text-left">
         {/* Decorative large quote */}
         <span className="pointer-events-none absolute -top-4 -left-2 font-serif text-[8rem] leading-none text-accent/[0.06] select-none">
           &ldquo;
@@ -74,7 +74,7 @@ function TestimonialCard({
           </blockquote>
 
           {/* Author */}
-          <div className="mt-8 flex items-center gap-4">
+          <div className="mt-8 flex items-center justify-center gap-4 md:justify-start">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/8 font-sans text-sm font-bold text-accent transition-all duration-500 group-hover:bg-accent group-hover:text-white">
               {testimonial.name.charAt(0)}
             </div>

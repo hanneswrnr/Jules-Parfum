@@ -114,7 +114,7 @@ function StepCard({
     <ScrollReveal delay={index * 0.15} distance={40} className="h-full">
       <div
         ref={cardRef}
-        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] sm:p-10"
+        className="group relative flex h-full flex-col items-center overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 text-center transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] md:items-start md:text-left sm:p-10"
       >
         {/* Large Background Number */}
         <span className="step-number pointer-events-none absolute -top-4 -right-2 font-serif text-[8rem] font-light leading-none text-foreground/[0.06] select-none sm:text-[10rem]">
@@ -128,7 +128,7 @@ function StepCard({
 
         {/* Content */}
         <div className="relative">
-          <div className="mb-3 flex items-center gap-3">
+          <div className="mb-3 flex items-center justify-center gap-3 md:justify-start">
             <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent/60">
               Schritt {step.number}
             </span>
@@ -141,7 +141,7 @@ function StepCard({
             {step.title}
           </h3>
 
-          <p className="mt-3 max-w-sm font-sans text-base leading-relaxed text-foreground/50">
+          <p className="mx-auto mt-3 max-w-sm font-sans text-base leading-relaxed text-foreground/50 md:mx-0">
             {step.description}
           </p>
         </div>
@@ -200,7 +200,7 @@ export function HowItWorks(): React.ReactElement {
                 sizes="(max-width: 768px) 100vw, 1200px"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-              <div className="absolute inset-0 flex flex-col items-start justify-center px-8 sm:px-14">
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center sm:items-start sm:text-left sm:px-14">
                 <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-white/50">
                   Pers&ouml;nliche Beratung
                 </p>
@@ -209,7 +209,7 @@ export function HowItWorks(): React.ReactElement {
                 </h3>
                 <Link
                   href="/kontakt"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 font-sans text-sm font-medium text-foreground transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-sans text-sm font-medium text-foreground transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
                 >
                   Jetzt anfragen
                   <svg

@@ -8,7 +8,9 @@ const features = [
   {
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c2.21 2.55 3.48 5.66 3.48 9s-1.27 6.45-3.48 9c-2.21-2.55-3.48-5.66-3.48-9s1.27-6.45 3.48-9Z" />
       </svg>
     ),
     title: "Fragworld Partnerschaft",
@@ -18,7 +20,8 @@ const features = [
   {
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
       </svg>
     ),
     title: "100% Vegan & Tierversuchsfrei",
@@ -28,8 +31,9 @@ const features = [
   {
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 2h7" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 16h10" />
       </svg>
     ),
     title: "Extrait de Parfum",
@@ -96,9 +100,9 @@ export function FeatureGrid(): React.ReactElement {
               delay={i * 0.1}
               distance={30}
             >
-              <div className="group relative overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(201,169,110,0.08)] md:p-10">
+              <div className="group relative overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(201,169,110,0.08)] sm:text-left md:p-10">
                 {/* Icon Badge */}
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/8 text-accent transition-all duration-500 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(201,169,110,0.2)]">
+                <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/8 text-accent transition-all duration-500 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(201,169,110,0.2)] sm:mx-0">
                   {feature.icon}
                 </div>
 
@@ -110,7 +114,7 @@ export function FeatureGrid(): React.ReactElement {
                 </p>
 
                 {/* Hover arrow */}
-                <div className="mt-6 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/[0.03] text-foreground/20 transition-all duration-500 group-hover:bg-accent/10 group-hover:text-accent">
+                <div className="mx-auto mt-6 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/[0.03] text-foreground/20 transition-all duration-500 group-hover:bg-accent/10 group-hover:text-accent sm:mx-0">
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
                   </svg>

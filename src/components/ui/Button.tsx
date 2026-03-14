@@ -16,7 +16,7 @@ export function Button({
   onClick,
 }: ButtonProps): React.ReactElement {
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-sans text-sm font-medium tracking-wide transition-all duration-500 cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(201,169,110,0.3)]";
+    "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-sans text-sm font-medium tracking-wide transition-all duration-500 cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(201,169,110,0.3)]";
 
   const variants = {
     primary:

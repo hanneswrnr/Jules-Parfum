@@ -1,38 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
-const STORAGE_KEY = "jules-maps-consent";
+import { useCookieConsent } from "@/components/cookie/CookieConsentProvider";
 
 interface GoogleMapsEmbedProps {
   className?: string;
 }
 
 export function GoogleMapsEmbed({ className }: GoogleMapsEmbedProps): React.ReactElement {
-  const [hasConsent, setHasConsent] = useState(false);
+  const { consent, openSettings } = useCookieConsent();
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "true") {
-      setHasConsent(true);
-    }
-  }, []);
-
-  const handleConsent = (): void => {
-    localStorage.setItem(STORAGE_KEY, "true");
-    setHasConsent(true);
-  };
-
-  if (hasConsent) {
+  if (consent.externalMedia) {
     return (
       <iframe
         title="Standort Jules Parfum — Zwenkau"
-        src="https://maps.google.com/maps?q=04442+Zwenkau&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        src="https://www.google.com/maps?q=04442+Zwenkau&t=&z=13&ie=UTF8&iwloc=&output=embed"
         className={className ?? "h-full w-full rounded-2xl"}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         allowFullScreen
-        sandbox="allow-scripts allow-same-origin"
       />
     );
   }
@@ -68,24 +53,24 @@ export function GoogleMapsEmbed({ className }: GoogleMapsEmbedProps): React.Reac
         04442 Zwenkau
       </p>
 
-      {/* Consent Button */}
+      {/* Consent Button — opens cookie settings */}
       <button
         type="button"
-        onClick={handleConsent}
+        onClick={openSettings}
         className="rounded-full bg-accent px-5 py-2.5 font-sans text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-[0_6px_20px_rgba(201,169,110,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50"
       >
-        Google Maps laden
+        Externe Medien aktivieren
       </button>
 
       {/* Privacy Notice */}
       <p className="font-sans text-[11px] leading-relaxed text-foreground/40">
-        Mit dem Laden der Karte akzeptierst du die Datenschutzerklärung von
-        Google. Deine IP-Adresse wird an Google übermittelt.{" "}
+        Aktiviere &ldquo;Externe Medien&rdquo; in den Cookie-Einstellungen,
+        um Google Maps zu laden. Dabei wird deine IP-Adresse an Google &uuml;bermittelt.{" "}
         <a
           href="/datenschutz"
           className="text-accent underline underline-offset-2 hover:text-accent/70"
         >
-          Mehr in unserer Datenschutzerklärung
+          Mehr in unserer Datenschutzerkl&auml;rung
         </a>
         .
       </p>

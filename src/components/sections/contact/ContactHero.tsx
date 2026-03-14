@@ -82,7 +82,7 @@ export function ContactHero(): React.ReactElement {
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-6 pt-32 lg:flex-row lg:items-center lg:gap-12 lg:pt-28">
         {/* Left: Text Content */}
-        <div className="relative z-10 flex-1 py-12 lg:py-0">
+        <div className="relative z-10 flex-1 py-12 text-center lg:py-0 lg:text-left">
           <p
             ref={taglineRef}
             className="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-accent"
@@ -101,14 +101,14 @@ export function ContactHero(): React.ReactElement {
 
           <p
             ref={subtitleRef}
-            className="mt-6 max-w-md font-sans text-base leading-relaxed text-foreground/50 md:text-lg"
+            className="mx-auto mt-6 max-w-md font-sans text-base leading-relaxed text-foreground/50 md:text-lg lg:mx-0"
           >
             Schreib mir eine kurze Nachricht und ich finde den perfekten
             Duft f&uuml;r dich. Kostenlose Beratung, ehrliche Empfehlungen.
           </p>
 
           {/* CTA Group */}
-          <div ref={ctaGroupRef} className="mt-10 flex flex-wrap items-center gap-4">
+          <div ref={ctaGroupRef} className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <a
               href="#kontakt-form"
               className="group inline-flex items-center gap-2.5 rounded-full bg-foreground px-8 py-4 font-sans text-sm font-medium tracking-wide text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
@@ -145,7 +145,7 @@ export function ContactHero(): React.ReactElement {
           {/* Highlights */}
           <div
             ref={highlightsRef}
-            className="mt-14 flex items-center gap-8 border-t border-foreground/[0.06] pt-8 sm:gap-12"
+            className="mt-14 flex items-center justify-center gap-6 border-t border-foreground/[0.06] pt-8 sm:gap-12 lg:justify-start"
           >
             <div>
               <p className="font-serif text-3xl font-light text-foreground sm:text-4xl">
@@ -196,7 +196,7 @@ export function ContactHero(): React.ReactElement {
           {/* Badge */}
           <div
             ref={badgeRef}
-            className="absolute -left-2 top-12 z-20 rounded-2xl border border-white/60 bg-white/80 px-5 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-xl lg:left-0"
+            className="absolute left-1/2 top-4 z-20 -translate-x-1/2 rounded-2xl border border-white/60 bg-white/80 px-5 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-xl sm:left-4 sm:top-12 sm:translate-x-0 lg:left-0"
           >
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">

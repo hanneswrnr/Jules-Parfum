@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod/v4";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { GoogleMapsEmbed } from "@/components/ui/GoogleMapsEmbed";
+import { submitContactForm } from "@/app/actions/contact";
 import Image from "next/image";
 
 const contactSchema = z.object({
@@ -15,6 +17,7 @@ const contactSchema = z.object({
   message: z.string().min(10, "Deine Nachricht sollte mindestens 10 Zeichen lang sein."),
   preferredContact: z.enum(["email", "phone", "whatsapp"]),
   privacyConsent: z.literal(true, { error: "Bitte bestätige die Datenschutzerklärung." }),
+  website: z.string().optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -23,10 +26,11 @@ const inputClass =
   "mt-2 w-full rounded-xl border border-foreground/8 bg-white px-4 py-3.5 font-sans text-base text-foreground outline-none transition-all duration-300 focus:border-accent/30 focus:shadow-[0_0_20px_rgba(201,169,110,0.08)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50";
 
 export function ContactForm(): React.ReactElement {
+  const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -35,9 +39,16 @@ export function ContactForm(): React.ReactElement {
     },
   });
 
-  const onSubmit = (_data: ContactFormData): void => {
-    // TODO: Backend-Anbindung
-    reset();
+  const onSubmit = async (data: ContactFormData): Promise<void> => {
+    setServerError(null);
+    const result = await submitContactForm(data);
+    if (result.success) {
+      reset();
+    } else {
+      setServerError(
+        result.error ?? "Ein unbekannter Fehler ist aufgetreten."
+      );
+    }
   };
 
   return (
@@ -109,7 +120,7 @@ export function ContactForm(): React.ReactElement {
           </ScrollReveal>
 
           {/* Right: Form */}
-          <div>
+          <div className="text-center md:text-left">
             <ScrollReveal>
               <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
                 Kontakt
@@ -124,7 +135,7 @@ export function ContactForm(): React.ReactElement {
             </AnimatedText>
 
             <ScrollReveal delay={0.2}>
-              <p className="mt-4 font-sans text-base leading-relaxed text-foreground/50">
+              <p className="mx-auto mt-4 max-w-md font-sans text-base leading-relaxed text-foreground/50 md:mx-0 md:max-w-none">
                 Schreib mir und ich stelle dir eine pers&ouml;nliche Duftauswahl zusammen.
               </p>
             </ScrollReveal>
@@ -155,6 +166,25 @@ export function ContactForm(): React.ReactElement {
                   onSubmit={handleSubmit(onSubmit)}
                   className="space-y-5"
                 >
+                  {/* Honeypot — hidden from real users, bots fill it */}
+                  <div className="absolute -left-[9999px]" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      {...register("website")}
+                    />
+                  </div>
+
+                  {/* Server Error */}
+                  {serverError && (
+                    <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3" role="alert">
+                      <p className="font-sans text-sm text-red-600">{serverError}</p>
+                    </div>
+                  )}
+
                   {/* Name */}
                   <div>
                     <label htmlFor="name" className="block font-sans text-xs font-semibold uppercase tracking-wider text-foreground/40">
@@ -223,7 +253,7 @@ export function ContactForm(): React.ReactElement {
                             {...register("preferredContact")}
                             className="peer sr-only"
                           />
-                          <span className="inline-block rounded-full border border-foreground/8 bg-white px-5 py-2.5 font-sans text-sm text-foreground/50 transition-all duration-300 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white">
+                          <span className="inline-block rounded-full border border-foreground/8 bg-white px-5 py-3 font-sans text-sm text-foreground/50 transition-all duration-300 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white">
                             {option.label}
                           </span>
                         </label>
@@ -257,7 +287,7 @@ export function ContactForm(): React.ReactElement {
                         id="privacy-consent"
                         {...register("privacyConsent")}
                         aria-invalid={!!errors.privacyConsent}
-                        className="mt-1 h-4 w-4 rounded border-foreground/20 accent-accent"
+                        className="mt-0.5 h-5 w-5 shrink-0 rounded border-foreground/20 accent-accent"
                       />
                       <label htmlFor="privacy-consent" className="font-sans text-[13px] leading-relaxed text-foreground/60">
                         Ich habe die{" "}
@@ -275,18 +305,31 @@ export function ContactForm(): React.ReactElement {
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="group mt-2 flex w-full items-center justify-center gap-2.5 rounded-full bg-foreground px-8 py-4 font-sans text-sm font-medium tracking-wide text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50"
+                    disabled={isSubmitting}
+                    className="group mt-2 flex w-full items-center justify-center gap-2.5 rounded-full bg-foreground px-8 py-4 font-sans text-sm font-medium tracking-wide text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50 disabled:pointer-events-none disabled:opacity-60"
                   >
-                    Anfrage senden
-                    <svg
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                    </svg>
+                    {isSubmitting ? (
+                      <>
+                        <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Wird gesendet...
+                      </>
+                    ) : (
+                      <>
+                        Anfrage senden
+                        <svg
+                          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </form>
               </ScrollReveal>
