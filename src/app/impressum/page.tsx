@@ -89,8 +89,9 @@ export default function ImpressumPage(): React.ReactElement {
               </h2>
               <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-accent/30 to-transparent" />
               <p className="mt-5 font-sans text-base leading-relaxed text-foreground/70">
-                Die umsatzsteuerliche Angabe wird derzeit aktualisiert.
-                {/* TODO: USt-IdNr. oder Kleinunternehmerregelung eintragen, z.B.: "Gemäß §19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung)." */}
+                Gem&auml;&szlig; &sect;19 UStG wird keine Umsatzsteuer berechnet
+                (Kleinunternehmerregelung).
+                {/* TODO: Falls USt-IdNr. vorhanden, diesen Text ersetzen durch: "Umsatzsteuer-Identifikationsnummer gemäß §27a UStG: DE XXXXXXXXX" */}
               </p>
             </section>
 

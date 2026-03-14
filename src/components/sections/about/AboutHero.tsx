@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import Image from "next/image";
+import { BRAND_BLUR } from "@/lib/blur-placeholder";
 
 export function AboutHero(): React.ReactElement {
   const sectionRef = useRef<HTMLElement>(null);
@@ -188,6 +189,8 @@ export function AboutHero(): React.ReactElement {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
+              placeholder="blur"
+              blurDataURL={BRAND_BLUR}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
           </div>

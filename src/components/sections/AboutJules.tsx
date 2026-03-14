@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
+import { BRAND_BLUR } from "@/lib/blur-placeholder";
 
 export function AboutJules(): React.ReactElement {
   const sectionRef = useRef<HTMLElement>(null);
@@ -49,6 +50,8 @@ export function AboutJules(): React.ReactElement {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL={BRAND_BLUR}
                 />
               </div>
 
@@ -75,6 +78,8 @@ export function AboutJules(): React.ReactElement {
                 fill
                 className="object-cover"
                 sizes="112px"
+                placeholder="blur"
+                blurDataURL={BRAND_BLUR}
               />
             </div>
           </div>

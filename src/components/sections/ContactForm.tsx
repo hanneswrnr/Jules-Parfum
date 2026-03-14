@@ -3,24 +3,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod/v4";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { GoogleMapsEmbed } from "@/components/ui/GoogleMapsEmbed";
 import { submitContactForm } from "@/app/actions/contact";
+import { contactBaseSchema, type ContactBaseFormData } from "@/lib/validation";
+import { BRAND_BLUR } from "@/lib/blur-placeholder";
 import Image from "next/image";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Bitte gib deinen Namen ein."),
-  email: z.email("Bitte gib eine gültige E-Mail-Adresse ein."),
-  phone: z.string().optional(),
-  message: z.string().min(10, "Deine Nachricht sollte mindestens 10 Zeichen lang sein."),
-  preferredContact: z.enum(["email", "phone", "whatsapp"]),
-  privacyConsent: z.literal(true, { error: "Bitte bestätige die Datenschutzerklärung." }),
-  website: z.string().optional(),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
 
 const inputClass =
   "mt-2 w-full rounded-xl border border-foreground/8 bg-white px-4 py-3.5 font-sans text-base text-foreground outline-none transition-all duration-300 focus:border-accent/30 focus:shadow-[0_0_20px_rgba(201,169,110,0.08)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50";
@@ -32,14 +21,14 @@ export function ContactForm(): React.ReactElement {
     handleSubmit,
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+  } = useForm<ContactBaseFormData>({
+    resolver: zodResolver(contactBaseSchema),
     defaultValues: {
       preferredContact: "email",
     },
   });
 
-  const onSubmit = async (data: ContactFormData): Promise<void> => {
+  const onSubmit = async (data: ContactBaseFormData): Promise<void> => {
     setServerError(null);
     const result = await submitContactForm(data);
     if (result.success) {
@@ -65,6 +54,8 @@ export function ContactForm(): React.ReactElement {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL={BRAND_BLUR}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 

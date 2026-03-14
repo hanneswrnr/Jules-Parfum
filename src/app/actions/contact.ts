@@ -1,26 +1,50 @@
 "use server";
 
-import { z } from "zod/v4";
+import { headers } from "next/headers";
 import { Resend } from "resend";
+import { contactFullSchema, type ContactFullFormData } from "@/lib/validation";
 
-const contactSchema = z.object({
-  name: z.string().min(2),
-  email: z.email(),
-  phone: z.string().optional(),
-  message: z.string().min(10),
-  preferredContact: z.enum(["email", "phone", "whatsapp"]),
-  privacyConsent: z.literal(true),
-  preferences: z.array(z.string()).optional(),
-  website: z.string().optional(), // Honeypot
-});
-
-export type ContactFormInput = z.infer<typeof contactSchema>;
+// Re-export for backward compatibility
+export type ContactFormInput = ContactFullFormData;
 
 export interface ContactFormResult {
   success: boolean;
   error?: string;
 }
 
+// --- In-Memory Rate Limiting ---
+// Resets on serverless cold start — sufficient for a small business site.
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX = 3;
+
+const rateLimitMap = new Map<string, { count: number; firstRequest: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+
+  // Cleanup expired entries
+  for (const [key, entry] of rateLimitMap) {
+    if (now - entry.firstRequest > RATE_LIMIT_WINDOW_MS) {
+      rateLimitMap.delete(key);
+    }
+  }
+
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now - entry.firstRequest > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(ip, { count: 1, firstRequest: now });
+    return true;
+  }
+
+  if (entry.count < RATE_LIMIT_MAX) {
+    entry.count++;
+    return true;
+  }
+
+  return false;
+}
+
+// --- HTML Escaping ---
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, "&amp;")
@@ -30,15 +54,30 @@ function escapeHtml(text: string): string {
     .replace(/'/g, "&#039;");
 }
 
+// --- Server Action ---
 export async function submitContactForm(
   data: ContactFormInput
 ): Promise<ContactFormResult> {
+  // Rate limiting
+  const headersList = await headers();
+  const ip =
+    headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headersList.get("x-real-ip") ||
+    "unknown";
+
+  if (!checkRateLimit(ip)) {
+    return {
+      success: false,
+      error: "Zu viele Anfragen. Bitte versuche es in 15 Minuten erneut.",
+    };
+  }
+
   // Honeypot — bots fill hidden fields, real users don't
   if (data.website) {
     return { success: true };
   }
 
-  const result = contactSchema.safeParse(data);
+  const result = contactFullSchema.safeParse(data);
   if (!result.success) {
     return {
       success: false,

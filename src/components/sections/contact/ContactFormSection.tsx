@@ -3,25 +3,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod/v4";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { GoogleMapsEmbed } from "@/components/ui/GoogleMapsEmbed";
 import { submitContactForm } from "@/app/actions/contact";
+import { contactFullSchema, type ContactFullFormData } from "@/lib/validation";
+import { BRAND_BLUR } from "@/lib/blur-placeholder";
 import Image from "next/image";
-
-const contactPageSchema = z.object({
-  name: z.string().min(2, "Bitte gib deinen Namen ein."),
-  email: z.email("Bitte gib eine gültige E-Mail-Adresse ein."),
-  phone: z.string().optional(),
-  preferences: z.array(z.string()).optional(),
-  message: z.string().min(10, "Deine Nachricht sollte mindestens 10 Zeichen lang sein."),
-  preferredContact: z.enum(["email", "phone", "whatsapp"]),
-  privacyConsent: z.literal(true, { error: "Bitte bestätige die Datenschutzerklärung." }),
-  website: z.string().optional(),
-});
-
-type ContactPageFormData = z.infer<typeof contactPageSchema>;
 
 const preferenceOptions = [
   "Frisch & Zitrus",
@@ -41,15 +29,15 @@ export function ContactFormSection(): React.ReactElement {
     handleSubmit,
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
-  } = useForm<ContactPageFormData>({
-    resolver: zodResolver(contactPageSchema),
+  } = useForm<ContactFullFormData>({
+    resolver: zodResolver(contactFullSchema),
     defaultValues: {
       preferredContact: "email",
       preferences: [],
     },
   });
 
-  const onSubmit = async (data: ContactPageFormData): Promise<void> => {
+  const onSubmit = async (data: ContactFullFormData): Promise<void> => {
     setServerError(null);
     const result = await submitContactForm(data);
     if (result.success) {

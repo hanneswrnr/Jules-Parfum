@@ -136,7 +136,7 @@ function PerfumeCard({ perfume }: { perfume: Perfume }): React.ReactElement {
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-3xl border bg-white/70 backdrop-blur-sm transition-all duration-700 will-change-transform hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(201,169,110,0.15),0_0_0_1px_rgba(201,169,110,0.1)] ${
+      className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/70 backdrop-blur-sm transition-all duration-700 will-change-transform hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(201,169,110,0.15),0_0_0_1px_rgba(201,169,110,0.1)] ${
         isMythologik
           ? "border-accent/30 hover:border-accent/40"
           : isLuxury
@@ -743,7 +743,7 @@ export function CatalogClient(): React.ReactElement {
                   <CategoryHeader category={category} count={items.length} />
                   <div className="grid grid-cols-2 gap-4 sm:gap-5 xl:grid-cols-3">
                     {items.map((perfume, i) => (
-                      <ScrollReveal key={perfume.id} delay={i < 6 ? i * 0.05 : 0} distance={20}>
+                      <ScrollReveal key={perfume.id} delay={i < 6 ? i * 0.05 : 0} distance={20} className="h-full">
                         <PerfumeCard perfume={perfume} />
                       </ScrollReveal>
                     ))}
@@ -754,7 +754,7 @@ export function CatalogClient(): React.ReactElement {
           ) : filtered.length > 0 ? (
             <div className="grid grid-cols-2 gap-4 sm:gap-5 xl:grid-cols-3">
               {filtered.map((perfume, i) => (
-                <ScrollReveal key={perfume.id} delay={i < 9 ? i * 0.04 : 0} distance={20}>
+                <ScrollReveal key={perfume.id} delay={i < 9 ? i * 0.04 : 0} distance={20} className="h-full">
                   <PerfumeCard perfume={perfume} />
                 </ScrollReveal>
               ))}

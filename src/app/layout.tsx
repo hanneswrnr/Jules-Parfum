@@ -3,6 +3,8 @@ import { cormorantGaramond, dmSans } from "@/lib/fonts";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { CookieConsentWrapper } from "@/components/cookie/CookieConsentWrapper";
+import { PlausibleAnalytics } from "@/components/analytics/PlausibleAnalytics";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -111,9 +113,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <PlausibleAnalytics />
         <CookieConsentWrapper>
           <ScrollProgress />
           <SmoothScroll>{children}</SmoothScroll>
+          <WhatsAppButton />
         </CookieConsentWrapper>
       </body>
     </html>

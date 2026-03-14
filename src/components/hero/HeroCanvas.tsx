@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useImagePreloader } from "@/hooks/useImagePreloader";
 import { HeroOverlay } from "./HeroOverlay";
@@ -29,6 +29,7 @@ export function HeroCanvas(): React.ReactElement {
   const containerRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const currentFrameRef = useRef(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const { images, progress, isLoaded } = useImagePreloader(
     FRAME_COUNT,
@@ -36,6 +37,12 @@ export function HeroCanvas(): React.ReactElement {
     "frame-",
     "jpg",
   );
+
+  // Detect prefers-reduced-motion
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mql.matches);
+  }, []);
 
   const handleResize = useCallback(() => {
     const canvas = canvasRef.current;
@@ -68,12 +75,16 @@ export function HeroCanvas(): React.ReactElement {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    drawFrame(ctx, images[0], canvas);
-  }, [isLoaded, images]);
 
-  // GSAP ScrollTrigger für Frame-Scrubbing
+    // Show middle frame for reduced motion, first frame otherwise
+    const initialFrame = reducedMotion ? Math.floor(images.length / 2) : 0;
+    currentFrameRef.current = initialFrame;
+    drawFrame(ctx, images[initialFrame], canvas);
+  }, [isLoaded, images, reducedMotion]);
+
+  // GSAP ScrollTrigger für Frame-Scrubbing (skip if reduced motion)
   useEffect(() => {
-    if (!isLoaded || images.length === 0) return;
+    if (!isLoaded || images.length === 0 || reducedMotion) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
@@ -105,13 +116,15 @@ export function HeroCanvas(): React.ReactElement {
     }, containerRef);
 
     return () => gsapCtx.revert();
-  }, [isLoaded, images]);
+  }, [isLoaded, images, reducedMotion]);
+
+  const scrollHeight = reducedMotion ? 100 : SCROLL_HEIGHT_VH;
 
   return (
     <section
       ref={containerRef}
       className="relative"
-      style={{ height: `${SCROLL_HEIGHT_VH}vh` }}
+      style={{ height: `${scrollHeight}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Loading Screen */}
