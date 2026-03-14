@@ -1,10 +1,13 @@
-import { HeroCanvas } from "@/components/hero/HeroCanvas";
+import { Hero } from "@/components/sections/Hero";
 import { Header } from "@/components/layout/Header";
 import { Revolution } from "@/components/sections/Revolution";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { CatalogPreview } from "@/components/sections/CatalogPreview";
 import { AboutJules } from "@/components/sections/AboutJules";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/layout/Footer";
 
 export default function Home(): React.ReactElement {
@@ -12,9 +15,9 @@ export default function Home(): React.ReactElement {
     <>
       <Header />
 
-      <main>
-        {/* 1. Hero: Canvas Scroll Animation */}
-        <HeroCanvas />
+      <main id="main-content">
+        {/* 1. Hero */}
+        <Hero />
 
         {/* 2. Die Revolution: Warum unsere Preise fair sind */}
         <Revolution />
@@ -24,16 +27,25 @@ export default function Home(): React.ReactElement {
           <FeatureGrid />
         </div>
 
-        {/* 4. Über Jules Parfum */}
+        {/* 4. Katalog-Preview: Featured Düfte */}
+        <CatalogPreview />
+
+        {/* 5. Über Jules Parfum */}
         <div id="ueber">
           <AboutJules />
         </div>
 
-        {/* 5. So einfach gehts: 3-Step Prozess */}
+        {/* 6. Testimonials: Kundenstimmen */}
+        <Testimonials />
+
+        {/* 7. So einfach gehts: 3-Step Prozess */}
         <HowItWorks />
 
-        {/* 6. Kontakt / Lead-Formular */}
+        {/* 8. Kontakt / Lead-Formular */}
         <ContactForm />
+
+        {/* 9. FAQ: Häufige Fragen */}
+        <FAQ />
       </main>
 
       <Footer />

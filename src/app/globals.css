@@ -41,6 +41,31 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Custom Scrollbar — Chrome, Edge, Safari */
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 999px;
+  border: 2px solid var(--background);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* Custom Scrollbar — Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--background);
+}
+
 /* Scrollbar verstecken bei horizontalen Filter-Leisten */
 .hide-scrollbar {
   -ms-overflow-style: none;

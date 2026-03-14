@@ -1,10 +1,12 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod/v4";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AnimatedText } from "@/components/ui/AnimatedText";
-import { Button } from "@/components/ui/Button";
+import { GoogleMapsEmbed } from "@/components/ui/GoogleMapsEmbed";
+import Image from "next/image";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Bitte gib deinen Namen ein."),
@@ -12,9 +14,13 @@ const contactSchema = z.object({
   phone: z.string().optional(),
   message: z.string().min(10, "Deine Nachricht sollte mindestens 10 Zeichen lang sein."),
   preferredContact: z.enum(["email", "phone", "whatsapp"]),
+  privacyConsent: z.literal(true, { error: "Bitte bestätige die Datenschutzerklärung." }),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
+
+const inputClass =
+  "mt-2 w-full rounded-xl border border-foreground/8 bg-white px-4 py-3.5 font-sans text-base text-foreground outline-none transition-all duration-300 focus:border-accent/30 focus:shadow-[0_0_20px_rgba(201,169,110,0.08)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50";
 
 export function ContactForm(): React.ReactElement {
   const {
@@ -23,178 +29,270 @@ export function ContactForm(): React.ReactElement {
     formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       preferredContact: "email",
     },
   });
 
-  const onSubmit = (data: ContactFormData): void => {
-    // TODO: Backend-Anbindung (z.B. Server Action, API Route, oder E-Mail-Service)
-    console.log("Form submitted:", data);
+  const onSubmit = (_data: ContactFormData): void => {
+    // TODO: Backend-Anbindung
     reset();
   };
 
   return (
-    <section id="kontakt" className="relative bg-cream px-6 py-32 md:py-48">
-      <div className="mx-auto max-w-2xl">
-        {/* Header */}
-        <AnimatedText
-          as="h2"
-          className="text-center font-serif text-4xl font-light tracking-tight text-foreground md:text-5xl lg:text-6xl"
-        >
-          Finde deinen Duft.
-        </AnimatedText>
-
-        <ScrollReveal delay={0.2} className="mt-6">
-          <p className="text-center font-sans text-base leading-relaxed text-foreground/60">
-            Schreib mir und ich stelle dir eine persönliche Duftauswahl zusammen
-            — kostenlos und unverbindlich.
-          </p>
-        </ScrollReveal>
-
-        {/* Erfolgs-Nachricht */}
-        {isSubmitSuccessful && (
-          <ScrollReveal className="mt-12">
-            <div className="rounded-2xl border border-accent/20 bg-background p-8 text-center">
-              <p className="font-serif text-2xl text-accent">Vielen Dank!</p>
-              <p className="mt-2 font-sans text-base text-foreground/60">
-                Deine Anfrage ist eingegangen. Ich melde mich in Kürze bei dir.
-              </p>
-            </div>
-          </ScrollReveal>
-        )}
-
-        {/* Formular */}
-        {!isSubmitSuccessful && (
-          <ScrollReveal delay={0.3} className="mt-12">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="space-y-6 rounded-2xl bg-background p-8 shadow-sm md:p-10"
-            >
-              {/* Name */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block font-sans text-sm font-medium text-foreground/70"
-                >
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  {...register("name", { required: "Bitte gib deinen Namen ein." })}
-                  className="mt-2 w-full border-b border-foreground/10 bg-transparent py-3 font-sans text-base text-foreground outline-none transition-colors focus:border-accent"
-                  placeholder="Dein Name"
+    <section id="kontakt" className="relative overflow-hidden bg-cream px-6 py-32 md:py-48">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-20">
+          {/* Left: Image + Info */}
+          <ScrollReveal direction="left" distance={50}>
+            <div className="relative">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+                <Image
+                  src="/images/alle/IMG_3789.jpeg"
+                  alt="Olfazeta Extrait de Parfum"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                {errors.name && (
-                  <p className="mt-1 font-sans text-xs text-red-500">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-              {/* E-Mail */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block font-sans text-sm font-medium text-foreground/70"
-                >
-                  E-Mail
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  {...register("email", { required: "Bitte gib deine E-Mail ein." })}
-                  className="mt-2 w-full border-b border-foreground/10 bg-transparent py-3 font-sans text-base text-foreground outline-none transition-colors focus:border-accent"
-                  placeholder="deine@email.de"
-                />
-                {errors.email && (
-                  <p className="mt-1 font-sans text-xs text-red-500">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
+                {/* Overlay Info */}
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                        <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-sans text-xs text-white/60">Antwort innerhalb</p>
+                        <p className="font-sans text-sm font-semibold text-white">48 Stunden</p>
+                      </div>
+                    </div>
 
-              {/* Telefon (optional) */}
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block font-sans text-sm font-medium text-foreground/70"
-                >
-                  Telefon{" "}
-                  <span className="text-foreground/30">(optional)</span>
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  {...register("phone")}
-                  className="mt-2 w-full border-b border-foreground/10 bg-transparent py-3 font-sans text-base text-foreground outline-none transition-colors focus:border-accent"
-                  placeholder="+49 ..."
-                />
-              </div>
-
-              {/* Bevorzugter Kontaktweg */}
-              <div>
-                <label className="block font-sans text-sm font-medium text-foreground/70">
-                  Bevorzugter Kontaktweg
-                </label>
-                <div className="mt-3 flex flex-wrap gap-3">
-                  {[
-                    { value: "email", label: "E-Mail" },
-                    { value: "phone", label: "Telefon" },
-                    { value: "whatsapp", label: "WhatsApp" },
-                  ].map((option) => (
-                    <label
-                      key={option.value}
-                      className="cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        value={option.value}
-                        {...register("preferredContact")}
-                        className="peer sr-only"
-                      />
-                      <span className="inline-block rounded-full border border-foreground/10 px-5 py-2 font-sans text-sm text-foreground/60 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(201,169,110,0.3)] peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white">
-                        {option.label}
-                      </span>
-                    </label>
-                  ))}
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                        <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-sans text-xs text-white/60">Beratung</p>
+                        <p className="font-sans text-sm font-semibold text-white">Kostenlos &amp; unverbindlich</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Nachricht */}
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block font-sans text-sm font-medium text-foreground/70"
-                >
-                  Nachricht
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  {...register("message", {
-                    required: "Bitte schreib eine kurze Nachricht.",
-                  })}
-                  className="mt-2 w-full resize-none border-b border-foreground/10 bg-transparent py-3 font-sans text-base text-foreground outline-none transition-colors focus:border-accent"
-                  placeholder="Welche Duftrichtung interessiert dich? (z.B. frisch, holzig, blumig...)"
-                />
-                {errors.message && (
-                  <p className="mt-1 font-sans text-xs text-red-500">
-                    {errors.message.message}
-                  </p>
-                )}
+              {/* Standort-Karte */}
+              <div className="mt-5 overflow-hidden rounded-2xl border border-accent/20">
+                <div className="relative h-40">
+                  <GoogleMapsEmbed className="h-full w-full border-0" />
+                </div>
+                <div className="flex items-center gap-3 bg-gradient-to-r from-accent to-accent-light px-5 py-3.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/25">
+                    <svg className="h-4.5 w-4.5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-sans text-[11px] font-medium text-white/70">Standort</p>
+                    <p className="font-sans text-sm font-semibold text-white">04442 Zwenkau</p>
+                  </div>
+                </div>
               </div>
-
-              {/* Submit */}
-              <div className="pt-4">
-                <Button type="submit" variant="primary" className="w-full">
-                  Anfrage senden
-                </Button>
-              </div>
-            </form>
+            </div>
           </ScrollReveal>
-        )}
+
+          {/* Right: Form */}
+          <div>
+            <ScrollReveal>
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
+                Kontakt
+              </p>
+            </ScrollReveal>
+
+            <AnimatedText
+              as="h2"
+              className="mt-4 font-serif text-4xl font-light tracking-tight text-foreground md:text-5xl"
+            >
+              Finde deinen Duft.
+            </AnimatedText>
+
+            <ScrollReveal delay={0.2}>
+              <p className="mt-4 font-sans text-base leading-relaxed text-foreground/50">
+                Schreib mir und ich stelle dir eine pers&ouml;nliche Duftauswahl zusammen.
+              </p>
+            </ScrollReveal>
+
+            {/* Success */}
+            {isSubmitSuccessful && (
+              <div
+                className="mt-10 rounded-3xl border border-accent/20 bg-white p-8 text-center"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10">
+                  <svg className="h-7 w-7 text-accent" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                </div>
+                <p className="font-serif text-2xl text-foreground">Vielen Dank!</p>
+                <p className="mt-2 font-sans text-base text-foreground/50">
+                  Deine Anfrage ist eingegangen. Ich melde mich in K&uuml;rze bei dir.
+                </p>
+              </div>
+            )}
+
+            {/* Form */}
+            {!isSubmitSuccessful && (
+              <ScrollReveal delay={0.3} className="mt-8">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-5"
+                >
+                  {/* Name */}
+                  <div>
+                    <label htmlFor="name" className="block font-sans text-xs font-semibold uppercase tracking-wider text-foreground/40">
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      {...register("name")}
+                      aria-invalid={!!errors.name}
+                      className={inputClass}
+                      placeholder="Dein Name"
+                    />
+                    {errors.name && (
+                      <p className="mt-1.5 font-sans text-xs text-red-500" role="alert">{errors.name.message}</p>
+                    )}
+                  </div>
+
+                  {/* Email + Phone Row */}
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="email" className="block font-sans text-xs font-semibold uppercase tracking-wider text-foreground/40">
+                        E-Mail
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        {...register("email")}
+                        aria-invalid={!!errors.email}
+                        className={inputClass}
+                        placeholder="deine@email.de"
+                      />
+                      {errors.email && (
+                        <p className="mt-1.5 font-sans text-xs text-red-500" role="alert">{errors.email.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block font-sans text-xs font-semibold uppercase tracking-wider text-foreground/40">
+                        Telefon <span className="text-foreground/20">(optional)</span>
+                      </label>
+                      <input
+                        id="phone"
+                        type="tel"
+                        {...register("phone")}
+                        className={inputClass}
+                        placeholder="+49 ..."
+                      />
+                    </div>
+                  </div>
+
+                  {/* Preferred Contact */}
+                  <div>
+                    <label className="block font-sans text-xs font-semibold uppercase tracking-wider text-foreground/40">
+                      Bevorzugter Kontaktweg
+                    </label>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        { value: "email", label: "E-Mail" },
+                        { value: "phone", label: "Telefon" },
+                        { value: "whatsapp", label: "WhatsApp" },
+                      ].map((option) => (
+                        <label key={option.value} className="cursor-pointer">
+                          <input
+                            type="radio"
+                            value={option.value}
+                            {...register("preferredContact")}
+                            className="peer sr-only"
+                          />
+                          <span className="inline-block rounded-full border border-foreground/8 bg-white px-5 py-2.5 font-sans text-sm text-foreground/50 transition-all duration-300 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white">
+                            {option.label}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="message" className="block font-sans text-xs font-semibold uppercase tracking-wider text-foreground/40">
+                      Nachricht
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      {...register("message")}
+                      aria-invalid={!!errors.message}
+                      className="mt-2 w-full resize-none rounded-xl border border-foreground/8 bg-white px-4 py-3.5 font-sans text-base text-foreground outline-none transition-all duration-300 focus:border-accent/30 focus:shadow-[0_0_20px_rgba(201,169,110,0.08)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50"
+                      placeholder="Welche Duftrichtung interessiert dich?"
+                    />
+                    {errors.message && (
+                      <p className="mt-1.5 font-sans text-xs text-red-500" role="alert">{errors.message.message}</p>
+                    )}
+                  </div>
+
+                  {/* Privacy Consent */}
+                  <div>
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="privacy-consent"
+                        {...register("privacyConsent")}
+                        aria-invalid={!!errors.privacyConsent}
+                        className="mt-1 h-4 w-4 rounded border-foreground/20 accent-accent"
+                      />
+                      <label htmlFor="privacy-consent" className="font-sans text-[13px] leading-relaxed text-foreground/60">
+                        Ich habe die{" "}
+                        <a href="/datenschutz" className="text-accent underline underline-offset-2 hover:text-accent/80">
+                          Datenschutzerklärung
+                        </a>{" "}
+                        gelesen und bin mit der Verarbeitung meiner Daten einverstanden.&nbsp;*
+                      </label>
+                    </div>
+                    {errors.privacyConsent && (
+                      <p className="mt-1.5 text-[12px] text-red-500" role="alert">{errors.privacyConsent.message}</p>
+                    )}
+                  </div>
+
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    className="group mt-2 flex w-full items-center justify-center gap-2.5 rounded-full bg-foreground px-8 py-4 font-sans text-sm font-medium tracking-wide text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent/50"
+                  >
+                    Anfrage senden
+                    <svg
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                  </button>
+                </form>
+              </ScrollReveal>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

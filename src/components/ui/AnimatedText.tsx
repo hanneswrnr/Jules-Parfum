@@ -29,12 +29,29 @@ export function AnimatedText({
     const parts =
       splitBy === "words" ? text.split(" ") : text.split("");
 
-    el.innerHTML = parts
-      .map(
-        (part) =>
-          `<span class="inline-block overflow-hidden"><span class="animated-part inline-block">${part}${splitBy === "words" ? "&nbsp;" : ""}</span></span>`,
-      )
-      .join("");
+    // DOM API statt innerHTML für XSS-Sicherheit
+    el.textContent = "";
+    parts.forEach((part) => {
+      const outer = document.createElement("span");
+      outer.style.display = "inline-block";
+      outer.style.overflow = "hidden";
+
+      const inner = document.createElement("span");
+      inner.classList.add("animated-part");
+      inner.style.display = "inline-block";
+      inner.textContent = part === " " ? "\u00A0" : part;
+
+      if (splitBy === "words") {
+        // Leerzeichen nach jedem Wort anhängen
+        outer.appendChild(inner);
+        el.appendChild(outer);
+        const space = document.createTextNode("\u00A0");
+        el.appendChild(space);
+      } else {
+        outer.appendChild(inner);
+        el.appendChild(outer);
+      }
+    });
 
     const spans = el.querySelectorAll(".animated-part");
 
