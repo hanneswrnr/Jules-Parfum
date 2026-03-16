@@ -4,7 +4,6 @@ import { Revolution } from "@/components/sections/Revolution";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { CatalogPreview } from "@/components/sections/CatalogPreview";
 import { AboutJules } from "@/components/sections/AboutJules";
-import { Testimonials } from "@/components/sections/Testimonials";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQ } from "@/components/sections/FAQ";
@@ -53,9 +52,6 @@ export default function Home(): React.ReactElement {
         <div id="ueber">
           <AboutJules />
         </div>
-
-        {/* 6. Testimonials: Kundenstimmen */}
-        <Testimonials />
 
         {/* 7. So einfach gehts: 3-Step Prozess */}
         <HowItWorks />
