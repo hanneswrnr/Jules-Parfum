@@ -49,74 +49,54 @@ export function ContactSection(): React.ReactElement {
   return (
     <section id="kontakt" className="relative overflow-hidden bg-cream px-6 py-32 md:py-48">
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-20">
-          {/* Left: Image + Map */}
+        {/* Top: Image + Heading & Contact Cards */}
+        <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-20">
+          {/* Left: Image */}
           <ScrollReveal direction="left" distance={50}>
-            <div className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
-                <Image
-                  src="/images/alle/IMG_3789.jpeg"
-                  alt="Olfazeta Extrait de Parfum"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  placeholder="blur"
-                  blurDataURL={BRAND_BLUR}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+              <Image
+                src="/images/alle/IMG_3789.jpeg"
+                alt="Olfazeta Extrait de Parfum"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                placeholder="blur"
+                blurDataURL={BRAND_BLUR}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                {/* Overlay Info */}
-                <div className="absolute inset-x-0 bottom-0 p-8">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-                        <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-sans text-xs text-white/60">Antwort innerhalb</p>
-                        <p className="font-sans text-sm font-semibold text-white">48 Stunden</p>
-                      </div>
+              {/* Overlay Info */}
+              <div className="absolute inset-x-0 bottom-0 p-8">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                      <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
                     </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-                        <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-sans text-xs text-white/60">Beratung</p>
-                        <p className="font-sans text-sm font-semibold text-white">Kostenlos &amp; unverbindlich</p>
-                      </div>
+                    <div>
+                      <p className="font-sans text-xs text-white/60">Antwort innerhalb</p>
+                      <p className="font-sans text-sm font-semibold text-white">48 Stunden</p>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Standort-Karte */}
-              <div className="mt-5 overflow-hidden rounded-2xl border border-accent/20">
-                <div className="relative h-40">
-                  <GoogleMapsEmbed className="h-full w-full border-0" />
-                </div>
-                <div className="flex items-center gap-3 bg-gradient-to-r from-accent to-accent-light px-5 py-3.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/25">
-                    <svg className="h-4.5 w-4.5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="font-sans text-[11px] font-medium text-white/70">Standort</p>
-                    <p className="font-sans text-sm font-semibold text-white">04442 Zwenkau</p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                      <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-sans text-xs text-white/60">Beratung</p>
+                      <p className="font-sans text-sm font-semibold text-white">Kostenlos &amp; unverbindlich</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* Right: Contact Methods */}
+          {/* Right: Heading + Contact Cards */}
           <div className="text-center md:text-left">
             <ScrollReveal>
               <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
@@ -138,7 +118,7 @@ export function ContactSection(): React.ReactElement {
             </ScrollReveal>
 
             {/* Contact Method Cards */}
-            <div className="mt-10 space-y-4">
+            <div className="mt-8 space-y-3.5">
               {contactMethods.map((method, i) => (
                 <ScrollReveal key={method.title} delay={0.3 + i * 0.1} distance={20}>
                   <a
@@ -182,6 +162,27 @@ export function ContactSection(): React.ReactElement {
             </div>
           </div>
         </div>
+
+        {/* Bottom: Full-width Map */}
+        <ScrollReveal delay={0.3}>
+          <div className="mt-14 overflow-hidden rounded-3xl border border-accent/20">
+            <div className="relative h-56 md:h-72">
+              <GoogleMapsEmbed className="h-full w-full border-0" />
+            </div>
+            <div className="flex items-center gap-4 bg-gradient-to-r from-accent to-accent-light px-6 py-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/25">
+                <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-[11px] font-medium text-white/70">Standort</p>
+                <p className="font-sans text-sm font-semibold text-white">04442 Zwenkau &mdash; S&uuml;dlich von Leipzig</p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
