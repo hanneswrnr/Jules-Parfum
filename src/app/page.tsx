@@ -5,7 +5,7 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { CatalogPreview } from "@/components/sections/CatalogPreview";
 import { AboutJules } from "@/components/sections/AboutJules";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-
+import { ContactSection } from "@/components/sections/ContactSection";
 import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/layout/Footer";
 import { faqs } from "@/lib/faq-data";
@@ -56,7 +56,10 @@ export default function Home(): React.ReactElement {
         {/* 7. So einfach gehts: 3-Step Prozess */}
         <HowItWorks />
 
-        {/* 8. FAQ: Häufige Fragen */}
+        {/* 8. Kontakt */}
+        <ContactSection />
+
+        {/* 9. FAQ: Häufige Fragen */}
         <FAQ />
       </main>
 
