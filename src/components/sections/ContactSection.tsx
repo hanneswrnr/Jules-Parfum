@@ -47,13 +47,13 @@ const contactMethods = [
 
 export function ContactSection(): React.ReactElement {
   return (
-    <section id="kontakt" className="relative overflow-hidden bg-cream px-6 py-32 md:py-48">
+    <section id="kontakt" className="relative overflow-hidden bg-cream px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48">
       <div className="mx-auto max-w-6xl">
         {/* Top: Image + Heading & Contact Cards */}
         <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-20">
           {/* Left: Image */}
           <ScrollReveal direction="left" distance={50}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-3xl sm:aspect-[4/5]">
               <Image
                 src="/images/alle/IMG_3789.jpeg"
                 alt="Olfazeta Extrait de Parfum"

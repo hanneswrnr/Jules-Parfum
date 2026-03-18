@@ -741,7 +741,7 @@ export function CatalogClient(): React.ReactElement {
               {groupedByCategory.map(({ category, items }) => (
                 <section key={category}>
                   <CategoryHeader category={category} count={items.length} />
-                  <div className="grid grid-cols-2 gap-4 sm:gap-5 xl:grid-cols-3">
+                  <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
                     {items.map((perfume, i) => (
                       <ScrollReveal key={perfume.id} delay={i < 6 ? i * 0.05 : 0} distance={20} className="h-full">
                         <PerfumeCard perfume={perfume} />
@@ -752,7 +752,7 @@ export function CatalogClient(): React.ReactElement {
               ))}
             </div>
           ) : filtered.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 sm:gap-5 xl:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
               {filtered.map((perfume, i) => (
                 <ScrollReveal key={perfume.id} delay={i < 9 ? i * 0.04 : 0} distance={20} className="h-full">
                   <PerfumeCard perfume={perfume} />

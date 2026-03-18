@@ -54,7 +54,7 @@ const features = [
 
 export function FeatureGrid(): React.ReactElement {
   return (
-    <section className="relative bg-cream px-6 py-32 md:py-48">
+    <section className="relative bg-cream px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48">
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center">
@@ -100,7 +100,7 @@ export function FeatureGrid(): React.ReactElement {
               delay={i * 0.1}
               distance={30}
             >
-              <div className="group relative overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(201,169,110,0.08)] sm:text-left md:p-10">
+              <div className="group relative overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-6 text-center transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(201,169,110,0.08)] sm:p-8 sm:text-left lg:p-10">
                 {/* Icon Badge */}
                 <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/8 text-accent transition-all duration-500 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(201,169,110,0.2)] sm:mx-0">
                   {feature.icon}

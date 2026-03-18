@@ -108,7 +108,7 @@ function StepCard({
     <ScrollReveal delay={index * 0.15} distance={40} className="h-full">
       <div
         ref={cardRef}
-        className="group relative flex h-full flex-col items-center overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 text-center transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] md:items-start md:text-left sm:p-10"
+        className="group relative flex h-full flex-col items-center overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-6 text-center transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] sm:items-start sm:p-8 sm:text-left lg:p-10"
       >
         {/* Large Background Number */}
         <span className="step-number pointer-events-none absolute -top-4 -right-2 font-serif text-[8rem] font-light leading-none text-foreground/[0.06] select-none sm:text-[10rem]">
@@ -122,12 +122,12 @@ function StepCard({
 
         {/* Content */}
         <div className="relative">
-          <div className="mb-3 flex items-center justify-center gap-3 md:justify-start">
+          <div className="mb-3 flex items-center justify-center gap-3 sm:justify-start">
             <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent/60">
               Schritt {step.number}
             </span>
             {index < steps.length - 1 && (
-              <div className="hidden h-[1px] flex-1 bg-gradient-to-r from-accent/20 to-transparent md:block" />
+              <div className="hidden h-[1px] flex-1 bg-gradient-to-r from-accent/20 to-transparent sm:block" />
             )}
           </div>
 
@@ -150,7 +150,7 @@ export function HowItWorks(): React.ReactElement {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background px-6 py-32 md:py-48"
+      className="relative bg-background px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48"
     >
       <div className="mx-auto max-w-6xl">
         {/* Header */}
@@ -176,7 +176,7 @@ export function HowItWorks(): React.ReactElement {
         </div>
 
         {/* Step Cards Grid */}
-        <div className="mt-16 grid auto-rows-fr gap-5 md:grid-cols-3 md:gap-6">
+        <div className="mt-12 grid auto-rows-fr gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
           {steps.map((step, i) => (
             <StepCard key={step.number} step={step} index={i} />
           ))}
@@ -185,7 +185,7 @@ export function HowItWorks(): React.ReactElement {
         {/* Bottom CTA with Image */}
         <ScrollReveal delay={0.2}>
           <div className="relative mt-20 overflow-hidden rounded-3xl">
-            <div className="relative h-64 sm:h-72">
+            <div className="relative h-52 sm:h-64 md:h-72">
               <Image
                 src="/images/alle/IMG_3797.jpeg"
                 alt="Chogan Duftproben-Koffer mit \u00fcber 100 D\u00fcften"

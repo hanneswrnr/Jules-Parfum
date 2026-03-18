@@ -28,9 +28,9 @@ function AccordionItem({
         <button
           type="button"
           onClick={onToggle}
-          className="flex w-full items-center justify-between px-7 py-6 text-left"
+          className="flex w-full items-center justify-between px-5 py-5 text-left sm:px-7 sm:py-6"
         >
-          <span className={`pr-4 font-serif text-lg font-medium transition-colors duration-300 md:text-xl ${
+          <span className={`pr-3 font-serif text-base font-medium transition-colors duration-300 sm:text-lg sm:pr-4 md:text-xl ${
             isOpen ? "text-foreground" : "text-foreground/70"
           }`}>
             {item.question}
@@ -60,7 +60,7 @@ function AccordionItem({
           }`}
         >
           <div className="overflow-hidden">
-            <p className="max-w-2xl px-7 font-sans text-base leading-relaxed text-foreground/50">
+            <p className="max-w-2xl px-5 font-sans text-sm leading-relaxed text-foreground/50 sm:px-7 sm:text-base">
               {item.answer}
             </p>
           </div>
@@ -74,7 +74,7 @@ export function FAQ(): React.ReactElement {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-background px-6 py-32 md:py-48">
+    <section className="bg-background px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48">
       <div className="mx-auto max-w-3xl">
         {/* Section Header */}
         <div className="text-center">

@@ -10,7 +10,7 @@ export function Footer(): React.ReactElement {
       {/* Subtle top accent line */}
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
 
-      <div className="px-6 pt-20 pb-10 md:pt-28 md:pb-14">
+      <div className="px-4 pt-16 pb-8 sm:px-6 md:pt-24 md:pb-12">
         <div className="mx-auto max-w-6xl">
           {/* Top Section: Brand + Navigation */}
           <div className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-8">

@@ -89,7 +89,7 @@ function StatCard({
     <ScrollReveal delay={index * 0.12} distance={30}>
       <div
         ref={cardRef}
-        className="group relative overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] sm:p-10"
+        className="group relative overflow-hidden rounded-3xl border border-foreground/[0.06] bg-white p-6 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,169,110,0.1)] sm:p-8 lg:p-10"
       >
         {/* Large background number */}
         <span className="pointer-events-none absolute -top-6 -right-4 font-serif text-[10rem] font-light leading-none text-foreground/[0.02] select-none">
@@ -123,7 +123,7 @@ function StatCard({
 
 export function Revolution(): React.ReactElement {
   return (
-    <section className="relative overflow-hidden bg-background px-6 py-32 md:py-48">
+    <section className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48">
       {/* Subtle background gradient */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent" />
 

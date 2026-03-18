@@ -32,7 +32,7 @@ export function AboutJules(): React.ReactElement {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-background px-6 py-32 md:py-48"
+      className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48"
     >
       {/* Subtle background accent */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-accent/[0.015] to-transparent" />

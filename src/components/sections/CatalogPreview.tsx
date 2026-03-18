@@ -159,7 +159,7 @@ export function CatalogPreview(): React.ReactElement {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-background px-6 py-32 md:py-48">
+    <section className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 sm:py-28 md:py-36 lg:py-48">
       {/* Large decorative background number */}
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[20rem] font-light leading-none text-foreground/[0.015] select-none md:text-[30rem]">
         <span ref={countRef}>{perfumes.length}</span>+
@@ -190,7 +190,7 @@ export function CatalogPreview(): React.ReactElement {
         </div>
 
         {/* Featured Cards */}
-        <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4 lg:gap-6">
           {featured.map((perfume, i) => (
             <FeaturedCard key={perfume.id} perfume={perfume} index={i} />
           ))}

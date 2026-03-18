@@ -116,9 +116,9 @@ export function Hero(): React.ReactElement {
       {/* Subtle gradient background */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/[0.03] via-transparent to-rose-100/20" />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-6 pt-32 lg:flex-row lg:items-center lg:gap-12 lg:pt-28">
+      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 pt-28 sm:px-6 md:flex-row md:items-center md:gap-12">
         {/* Left: Text Content */}
-        <div className="relative z-10 flex-1 py-12 text-center lg:py-0 lg:text-left">
+        <div className="relative z-10 flex-1 py-8 text-center md:py-0 md:text-left">
           <p
             ref={taglineRef}
             className="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-accent"
@@ -128,7 +128,7 @@ export function Hero(): React.ReactElement {
 
           <h1
             ref={headingRef}
-            className="mt-5 font-serif text-5xl font-light leading-[1.1] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+            className="mt-4 font-serif text-[2.4rem] font-light leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-[5.5rem]"
           >
             Finde deinen
             <br />
@@ -137,14 +137,14 @@ export function Hero(): React.ReactElement {
 
           <p
             ref={subtitleRef}
-            className="mx-auto mt-6 max-w-md font-sans text-base leading-relaxed text-foreground/50 md:text-lg lg:mx-0"
+            className="mx-auto mt-5 max-w-md font-sans text-sm leading-relaxed text-foreground/50 sm:text-base md:mx-0 md:text-base"
           >
             Luxuri&ouml;se D&uuml;fte mit 30% Essenz &mdash; ohne den Preis der
             gro&szlig;en Marken. Kein Wasser, kein Marketing, nur Duft.
           </p>
 
           {/* CTA Group */}
-          <div ref={ctaGroupRef} className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+          <div ref={ctaGroupRef} className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-start">
             <Link
               href="/kontakt"
               className="group inline-flex items-center gap-2.5 rounded-full bg-foreground px-8 py-4 font-sans text-sm font-medium tracking-wide text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
@@ -189,10 +189,10 @@ export function Hero(): React.ReactElement {
           {/* Trust Stats */}
           <div
             ref={statsRef}
-            className="mt-14 flex items-center justify-center gap-6 border-t border-foreground/[0.06] pt-8 sm:gap-12 lg:justify-start"
+            className="mt-10 flex items-center justify-center gap-5 border-t border-foreground/[0.06] pt-6 sm:gap-10 md:justify-start"
           >
             <div>
-              <p className="font-serif text-3xl font-light text-foreground sm:text-4xl">
+              <p className="font-serif text-2xl font-light text-foreground sm:text-3xl">
                 {perfumes.length}+
               </p>
               <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-foreground/40">
@@ -201,7 +201,7 @@ export function Hero(): React.ReactElement {
             </div>
             <div className="h-8 w-[1px] bg-foreground/[0.08]" />
             <div>
-              <p className="font-serif text-3xl font-light text-foreground sm:text-4xl">
+              <p className="font-serif text-2xl font-light text-foreground sm:text-3xl">
                 30%
               </p>
               <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-foreground/40">
@@ -210,7 +210,7 @@ export function Hero(): React.ReactElement {
             </div>
             <div className="h-8 w-[1px] bg-foreground/[0.08]" />
             <div>
-              <p className="font-serif text-3xl font-light text-foreground sm:text-4xl">
+              <p className="font-serif text-2xl font-light text-foreground sm:text-3xl">
                 10h
               </p>
               <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-foreground/40">
@@ -221,10 +221,10 @@ export function Hero(): React.ReactElement {
         </div>
 
         {/* Right: Image */}
-        <div className="relative flex flex-1 items-center justify-center py-12 lg:py-0">
+        <div className="relative flex flex-1 items-center justify-center py-6 md:py-0">
           <div
             ref={imageRef}
-            className="relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-[2rem] sm:max-w-lg lg:max-w-none"
+            className="relative aspect-[3/4] w-full max-w-[300px] overflow-hidden rounded-[2rem] sm:max-w-md md:max-w-none"
           >
             <Image
               src="/images/alle/IMG_3786.jpeg"
@@ -240,7 +240,7 @@ export function Hero(): React.ReactElement {
           {/* Badge */}
           <div
             ref={badgeRef}
-            className="absolute left-1/2 top-4 z-20 -translate-x-1/2 rounded-2xl border border-white/60 bg-white/80 px-5 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-xl sm:left-4 sm:top-12 sm:translate-x-0 lg:left-0"
+            className="absolute left-1/2 top-4 z-20 -translate-x-1/2 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-xl sm:left-4 sm:top-8 sm:translate-x-0 md:left-0"
           >
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
