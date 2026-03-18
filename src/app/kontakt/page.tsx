@@ -8,17 +8,40 @@ import { ContactFAQ } from "@/components/sections/contact/ContactFAQ";
 import { ContactCTA } from "@/components/sections/contact/ContactCTA";
 
 export const metadata: Metadata = {
-  title: "Kontakt — Jules Parfum",
+  title: "Kontakt",
   description:
-    "Erreiche mich per WhatsApp, Instagram oder E-Mail. Kostenlose Beratung, Antwort innerhalb 48 Stunden.",
+    "Kontaktiere Jules Parfum per WhatsApp (+49 173 5231044) oder Instagram @juliemchlk. Kostenlose Duftberatung, persönliche Empfehlungen, Antwort innerhalb 48 Stunden.",
   alternates: {
     canonical: "/kontakt",
   },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Startseite",
+      item: "https://julesparfum.de",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Kontakt",
+      item: "https://julesparfum.de/kontakt",
+    },
+  ],
+};
+
 export default function KontaktPage(): React.ReactElement {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
 
       <main id="main-content">

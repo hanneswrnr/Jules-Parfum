@@ -11,9 +11,32 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Startseite",
+      item: "https://julesparfum.de",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Impressum",
+      item: "https://julesparfum.de/impressum",
+    },
+  ],
+};
+
 export default function ImpressumPage(): React.ReactElement {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
 
       <main id="main-content" className="min-h-screen bg-background pt-32 pb-24">

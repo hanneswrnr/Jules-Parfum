@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Header } from "@/components/layout/Header";
 import { Revolution } from "@/components/sections/Revolution";
@@ -9,6 +10,34 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/layout/Footer";
 import { faqs } from "@/lib/faq-data";
+
+export const metadata: Metadata = {
+  title: "Jules Parfum — Luxuriöse Extrait de Parfum zum fairen Preis",
+  description:
+    "Entdecke Extrait de Parfum mit 30% Duftessenz, 0% Wasser, 100% vegan. Über 140 Düfte für Damen, Herren & Unisex. Persönliche Beratung in Zwenkau & online. Unabhängige Chogan Vertriebspartnerin.",
+  keywords: [
+    "Extrait de Parfum",
+    "Parfum kaufen",
+    "Chogan Parfum",
+    "Olfazeta",
+    "luxuriöse Düfte",
+    "veganes Parfum",
+    "Jules Parfum",
+    "Parfum Zwenkau",
+    "Parfum Leipzig",
+    "Duftberatung",
+    "30% Duftessenz",
+  ],
+  alternates: {
+    canonical: "https://julesparfum.de",
+  },
+  openGraph: {
+    title: "Jules Parfum — Luxuriöse Düfte zum fairen Preis",
+    description:
+      "30% Duftessenz, 0% Wasser, 100% vegan. Über 140 Extrait de Parfum Düfte.",
+    url: "https://julesparfum.de",
+  },
+};
 
 const faqJsonLd = {
   "@context": "https://schema.org",

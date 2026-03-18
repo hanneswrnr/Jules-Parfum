@@ -4,12 +4,31 @@ import { Footer } from "@/components/layout/Footer";
 import { CatalogClient } from "@/components/catalog/CatalogClient";
 
 export const metadata: Metadata = {
-  title: "Produkte — Jules Parfum",
+  title: "Produkte",
   description:
-    "Entdecke über 140 luxuriöse Düfte: Damen, Herren, Unisex, Luxus-Linie, Event-Düfte und mehr. Extrait de Parfum zum fairen Preis.",
+    "Über 140 luxuriöse Extrait de Parfum Düfte: Damen, Herren, Unisex, Luxus-Linie, Event-Düfte und mehr. 30% Duftessenz, 0% Wasser, 100% vegan. Jetzt Duftliste anfragen.",
   alternates: {
     canonical: "/produkte",
   },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Startseite",
+      item: "https://julesparfum.de",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Produkte",
+      item: "https://julesparfum.de/produkte",
+    },
+  ],
 };
 
 const catalogJsonLd = {
@@ -55,6 +74,10 @@ export default function ProduktePage(): React.ReactElement {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Header />
       <main id="main-content" className="min-h-screen bg-background pt-32 pb-20">

@@ -9,17 +9,40 @@ import { Gallery } from "@/components/sections/about/Gallery";
 import { AboutCTA } from "@/components/sections/about/AboutCTA";
 
 export const metadata: Metadata = {
-  title: "Über mich — Jules Parfum",
+  title: "Über mich",
   description:
-    "Lerne Jules kennen — die Frau hinter Jules Parfum. Persönliche Beratung, ehrliche Empfehlungen und luxuriöse Düfte zum fairen Preis.",
+    "Ich bin Julie Michalek — Gründerin von Jules Parfum und unabhängige Chogan Vertriebspartnerin aus Zwenkau bei Leipzig. Persönliche Duftberatung, ehrliche Empfehlungen, luxuriöse Extrait de Parfum Düfte.",
   alternates: {
     canonical: "/ueber",
   },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Startseite",
+      item: "https://julesparfum.de",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Über mich",
+      item: "https://julesparfum.de/ueber",
+    },
+  ],
+};
+
 export default function UeberPage(): React.ReactElement {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
 
       <main id="main-content">
