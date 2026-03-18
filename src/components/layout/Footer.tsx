@@ -95,6 +95,7 @@ export function Footer(): React.ReactElement {
                   {[
                     { label: "Impressum", href: "/impressum" },
                     { label: "Datenschutz", href: "/datenschutz" },
+                    { label: "Widerrufsbelehrung", href: "/widerruf" },
                   ].map((link) => (
                     <Link
                       key={link.href}

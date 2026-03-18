@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "5xc3K_8GrI5RWZtnUQAoE0pnth793J4IEh4LvGMdAS0",
+  },
   other: {
     "geo.region": "DE-SN",
     "geo.placename": "Zwenkau, Sachsen, Deutschland",
