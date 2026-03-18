@@ -53,7 +53,7 @@ export function Header(): React.ReactElement {
   return (
     <header
       ref={headerRef}
-      className="fixed top-4 left-4 right-4 z-50 md:top-7 md:left-1/2 md:right-auto md:w-fit md:-translate-x-1/2"
+      className="fixed top-4 left-0 right-0 z-50 px-4 md:top-7 md:left-1/2 md:right-auto md:w-auto md:-translate-x-1/2 md:px-0"
     >
       {/* Desktop: Ovaler Header — breiter + dicker */}
       <div
