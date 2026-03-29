@@ -53,12 +53,12 @@ export function Header(): React.ReactElement {
   return (
     <header
       ref={headerRef}
-      className="fixed top-4 left-1/2 z-50 -translate-x-1/2 md:top-7"
+      className="fixed top-4 left-1/2 z-50 -translate-x-1/2 wide:top-7"
     >
       {/* Desktop: Ovaler Header — breiter + dicker */}
       <div
         ref={glowRef}
-        className="hidden items-center gap-3 rounded-full border border-accent/30 bg-background/85 py-3 pr-4 pl-4 shadow-[0_0_25px_rgba(201,169,110,0.2),0_0_50px_rgba(201,169,110,0.07)] backdrop-blur-xl md:flex"
+        className="hidden items-center gap-3 rounded-full border border-accent/30 bg-background/85 py-3 pr-4 pl-4 shadow-[0_0_25px_rgba(201,169,110,0.2),0_0_50px_rgba(201,169,110,0.07)] backdrop-blur-xl wide:flex"
       >
         {/* Logo — Scale + Glow auf Hover */}
         <Link
@@ -153,9 +153,9 @@ export function Header(): React.ReactElement {
       </div>
 
       {/* Mobile: Breiter Header — Logo links, Hamburger rechts */}
-      <div className="md:hidden">
+      <div className="wide:hidden">
         {/* Header Bar */}
-        <div className="flex w-[calc(100vw-2rem)] items-center justify-between rounded-2xl border border-accent/30 bg-background/90 px-4 py-3 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_0_0_1px_rgba(201,169,110,0.08)] backdrop-blur-xl">
+        <div className="flex w-[calc(100vw-2rem)] max-w-3xl items-center justify-between rounded-2xl border border-accent/30 bg-background/90 px-4 py-3 shadow-[0_4px_24px_rgba(0,0,0,0.08),0_0_0_1px_rgba(201,169,110,0.08)] backdrop-blur-xl">
           {/* Logo + Brand Name (links) */}
           <Link
             href="/"
@@ -209,7 +209,7 @@ export function Header(): React.ReactElement {
         {/* Mobile Dropdown */}
         <div
           id="mobile-nav"
-          className={`mt-2 w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-accent/15 bg-background/95 shadow-[0_8px_40px_rgba(0,0,0,0.1),0_0_0_1px_rgba(201,169,110,0.08)] backdrop-blur-xl transition-all duration-500 ${
+          className={`mt-2 w-[calc(100vw-2rem)] max-w-3xl overflow-hidden rounded-2xl border border-accent/15 bg-background/95 shadow-[0_8px_40px_rgba(0,0,0,0.1),0_0_0_1px_rgba(201,169,110,0.08)] backdrop-blur-xl transition-all duration-500 ${
             isMobileOpen
               ? "max-h-[500px] opacity-100"
               : "max-h-0 border-transparent opacity-0"

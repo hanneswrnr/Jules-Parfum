@@ -145,8 +145,8 @@ function PerfumeCard({ perfume }: { perfume: Perfume }): React.ReactElement {
       }`}
     >
       {/* Bild-Bereich mit Gradient-Hintergrund */}
-      <div className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br sm:h-52 ${gradient}`}>
-        <div className="relative h-30 w-22 transition-all duration-700 group-hover:-translate-y-1 group-hover:scale-105 sm:h-40 sm:w-28">
+      <div className={`relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br sm:h-52 ${gradient}`}>
+        <div className="relative h-32 w-22 transition-all duration-700 group-hover:-translate-y-1 group-hover:scale-105 sm:h-40 sm:w-28">
           <Image
             src={flaconImage}
             alt={`Olfazeta ${perfume.name}`}
@@ -198,8 +198,8 @@ function PerfumeCard({ perfume }: { perfume: Perfume }): React.ReactElement {
       </div>
 
       {/* Info-Bereich */}
-      <div className="flex flex-1 flex-col px-5 pt-4 pb-5 sm:px-6 sm:pt-5 sm:pb-6">
-        <h3 className="font-serif text-lg font-medium leading-tight tracking-tight text-foreground sm:text-xl">
+      <div className="flex flex-1 flex-col px-4 pt-3 pb-4 sm:px-5 sm:pt-4 sm:pb-5">
+        <h3 className="font-serif text-base font-medium leading-tight tracking-tight text-foreground sm:text-lg xl:text-xl">
           {perfume.name}
         </h3>
 
@@ -237,7 +237,7 @@ function PerfumeCard({ perfume }: { perfume: Perfume }): React.ReactElement {
         <Link
           href="/kontakt"
           aria-label={`${perfume.name} anfragen`}
-          className="mt-3 flex items-center justify-center gap-2 rounded-full bg-foreground py-3 font-sans text-[12px] font-medium tracking-wide text-background transition-all duration-700 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_4px_24px_rgba(201,169,110,0.25)] sm:mt-4 sm:py-3.5 sm:text-[13px]"
+          className="mt-3 flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-foreground py-3 font-sans text-[13px] font-medium tracking-wide text-background transition-all duration-700 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_4px_24px_rgba(201,169,110,0.25)] sm:mt-4 sm:py-3.5"
         >
           Anfragen
           <svg
@@ -741,7 +741,7 @@ export function CatalogClient(): React.ReactElement {
               {groupedByCategory.map(({ category, items }) => (
                 <section key={category}>
                   <CategoryHeader category={category} count={items.length} />
-                  <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 xl:gap-5">
                     {items.map((perfume, i) => (
                       <ScrollReveal key={perfume.id} delay={i < 6 ? i * 0.05 : 0} distance={20} className="h-full">
                         <PerfumeCard perfume={perfume} />
@@ -752,7 +752,7 @@ export function CatalogClient(): React.ReactElement {
               ))}
             </div>
           ) : filtered.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 xl:gap-5">
               {filtered.map((perfume, i) => (
                 <ScrollReveal key={perfume.id} delay={i < 9 ? i * 0.04 : 0} distance={20} className="h-full">
                   <PerfumeCard perfume={perfume} />
