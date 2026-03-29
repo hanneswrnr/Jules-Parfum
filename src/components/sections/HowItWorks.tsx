@@ -178,7 +178,12 @@ export function HowItWorks(): React.ReactElement {
         {/* Step Cards Grid */}
         <div className="mt-12 grid auto-rows-fr gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
           {steps.map((step, i) => (
-            <StepCard key={step.number} step={step} index={i} />
+            <div
+              key={step.number}
+              className={`h-full ${i === steps.length - 1 ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.625rem)] lg:col-span-1 lg:w-auto" : ""}`}
+            >
+              <StepCard step={step} index={i} />
+            </div>
           ))}
         </div>
 

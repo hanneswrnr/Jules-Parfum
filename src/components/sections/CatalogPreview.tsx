@@ -47,9 +47,9 @@ function FeaturedCard({
   const catLabel = categoryInfo[perfume.category]?.label ?? perfume.category;
 
   return (
-    <ScrollReveal delay={index * 0.12} distance={40}>
-      <Link href="/produkte" className="group block">
-        <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/50 backdrop-blur-sm transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(201,169,110,0.15)]">
+    <ScrollReveal delay={index * 0.12} distance={40} className="h-full">
+      <Link href="/produkte" className="group block h-full">
+        <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/60 bg-white/50 backdrop-blur-sm transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(201,169,110,0.15)]">
           {/* Gradient Accent Top */}
           <div
             className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accentGradient}`}
@@ -80,7 +80,7 @@ function FeaturedCard({
           </div>
 
           {/* Info Section */}
-          <div className="relative px-5 py-5 sm:px-6 sm:py-6">
+          <div className="relative flex flex-1 flex-col px-5 py-5 sm:px-6 sm:py-6">
             <h3 className="font-serif text-lg font-medium tracking-tight text-foreground sm:text-xl">
               {perfume.name}
             </h3>
@@ -91,7 +91,7 @@ function FeaturedCard({
             )}
 
             {/* Price + Arrow */}
-            <div className="mt-4 flex items-end justify-between">
+            <div className="mt-auto flex items-end justify-between pt-4">
               <div>
                 <p className="font-sans text-[13px] text-foreground/40">
                   ab{" "}

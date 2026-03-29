@@ -701,7 +701,7 @@ export function CatalogClient(): React.ReactElement {
       <div className="flex gap-8">
         {/* ─── Desktop Sidebar ─────────────────────────────── */}
         <aside className="hidden w-[260px] shrink-0 lg:block">
-          <div className="sticky top-[100px] rounded-2xl border border-foreground/[0.06] bg-white/60 p-5 shadow-sm backdrop-blur-sm">
+          <div className="sticky top-[100px] max-h-[calc(100vh-120px)] overflow-y-auto rounded-2xl border border-foreground/[0.06] bg-white/60 p-5 shadow-sm backdrop-blur-sm">
             <FilterContent {...filterContentProps} />
           </div>
         </aside>
