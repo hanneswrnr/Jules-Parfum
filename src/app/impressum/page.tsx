@@ -247,6 +247,24 @@ export default function ImpressumPage(): React.ReactElement {
                     Produktnamen sind Eigentum der jeweiligen Inhaber.
                   </p>
                 </div>
+                <div>
+                  <h3 className="mb-2 font-sans text-sm font-semibold uppercase tracking-wider text-foreground/40">
+                    Gestaltung &amp; technische Umsetzung
+                  </h3>
+                  <p>
+                    Diese Website wurde erstellt von{" "}
+                    <a
+                      href="https://origin-labs.de"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 transition-opacity hover:opacity-70"
+                    >
+                      Origin Labs
+                    </a>
+                    , einer Marke von Flare Solutions, Inhaber Hannes Werner,
+                    Karl-Marx-Weg 20, 06242 Krumpa.
+                  </p>
+                </div>
               </div>
             </section>
           </div>
